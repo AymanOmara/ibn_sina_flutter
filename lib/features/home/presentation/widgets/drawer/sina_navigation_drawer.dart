@@ -14,7 +14,15 @@ class SinaNavigationDrawer extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<SinaDrawerCubit>(),
       child: BlocConsumer<SinaDrawerCubit, SinaDrawerState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is SinaDrawerLogoutUser) {
+            Get.snackbar(
+              "success".tr,
+              "logout_success".tr,
+              backgroundColor: Colors.green,
+            );
+          }
+        },
         builder: (context, state) {
           SinaDrawerCubit cubit = BlocProvider.of(context);
           return Container(
@@ -27,16 +35,118 @@ class SinaNavigationDrawer extends StatelessWidget {
                 bottomEnd: Radius.circular(50),
               ),
             ),
-            child: cubit.isUserLoggedIn ? _loggedInUser() : _unLoggedInUser(),
+            child:
+                cubit.isUserLoggedIn ? _loggedInUser(cubit) : _unLoggedInUser(),
           );
         },
       ),
     );
   }
 
-  Widget _loggedInUser() {
+  Widget _loggedInUser(SinaDrawerCubit cubit) {
     return Column(
-      children: [],
+      children: [
+        SizedBox(
+          height: Get.mediaQuery.padding.top + 20,
+        ),
+        Text(
+          cubit.user?.userName ?? "",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+
+        InkWell(
+          onTap: () {
+            Get.toNamed(AppRoutes.contactUs);
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20,
+                ),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "contact_us".tr,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: orangeColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            cubit.logout();
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20,
+                ),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "logout".tr,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: orangeColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            cubit.logout();
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20,
+                ),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "delete_account".tr,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: orangeColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 

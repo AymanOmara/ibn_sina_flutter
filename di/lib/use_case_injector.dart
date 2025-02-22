@@ -3,7 +3,9 @@ import 'package:domain/features/app/use_case/init_language_use_case.dart';
 import 'package:domain/features/app/use_case/is_user_logged_in_use_case.dart';
 import 'package:domain/features/app/use_case/update_language_use_case.dart';
 import 'package:domain/features/authentication/use_case/login_use_case.dart';
+import 'package:domain/features/home/use_case/fetch_user_details_use_case.dart';
 import 'package:domain/features/home/use_case/home_banner_use_case.dart';
+import 'package:domain/features/home/use_case/logout_use_case.dart';
 import 'package:domain/features/products/use_case/fetch_products_use_case.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,6 +25,8 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
   //
   /// ********* Home **********
   diInjector.registerFactory(() => HomeBannerUseCase(diInjector()));
+  diInjector.registerFactory(() => FetchUserDetailsUseCase(diInjector()));
+  diInjector.registerFactory(() => LogoutUseCase(diInjector()));
 
   /// ********* Products **********
   diInjector.registerFactory(() => FetchProductsUseCase(diInjector()));

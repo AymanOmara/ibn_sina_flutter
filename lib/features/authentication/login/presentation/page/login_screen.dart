@@ -21,27 +21,17 @@ class LoginScreen extends StatelessWidget {
         if (state is LoginResult) {
           state.result.fold(
             onSuccess: (data) {
-              if(!data){
-                Get.snackbar(
-                    "error".tr,
-                    "invalid_login".tr,
-                    backgroundColor: Colors.red
-                );
-              }else{
+              if (!data) {
+                Get.snackbar("error".tr, "invalid_login".tr,
+                    backgroundColor: Colors.red);
+              } else {
                 Get.back();
-                Get.snackbar(
-                    "success".tr,
-                    "login_success".tr,
-                    backgroundColor: Colors.green
-                );
+                Get.snackbar("success".tr, "login_success".tr,
+                    backgroundColor: Colors.green);
               }
             },
             onFailure: (e) {
-              Get.snackbar(
-                "error".tr,
-                e.message,
-                backgroundColor: Colors.red
-              );
+              Get.snackbar("error".tr, e.message, backgroundColor: Colors.red);
             },
           );
         }
@@ -65,7 +55,18 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     spacing: 20,
                     children: [
-                      SizedBox(height: 220,),
+                      InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          "assets/images/back.png",
+                          width: 30,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 220,
+                      ),
                       SinaTextField(
                         title: "email".tr,
                         onChanged: (email) {
@@ -85,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                         loadingState: cubit.loading,
                         child: InkWell(
                           onTap: () {
-                            if(formKey.currentState?.validate() == true){
+                            if (formKey.currentState?.validate() == true) {
                               cubit.submit();
                             }
                           },

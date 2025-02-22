@@ -31,5 +31,8 @@ Map<String, String> ar = {
   "password":"كلمه المرور",
   "required_field": "هذا الحقل مطلوب",
   "invalid_email": "تنسيق البريد الإلكتروني غير صالح",
-  "password_too_short": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل"
+  "password_too_short": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+  "logout":"تسجيل خروج",
+  "logout_success": "تم تسجيل الخروج بنجاح",
+  "delete_account":"حذف الحساب"
 };

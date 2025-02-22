@@ -20,7 +20,9 @@ class UserLocal implements IUserLocal {
   bool get login => getUser() != null;
 
   @override
-  void logout() {}
+  void logout() {
+    _storage.write("user", null);
+  }
 
   @override
   void saveUser(UserEntity user) {

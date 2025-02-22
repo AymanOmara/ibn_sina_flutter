@@ -4,3 +4,4 @@ part of 'sina_drawer_cubit.dart';
 sealed class SinaDrawerState {}
 
 final class SinaDrawerInitial extends SinaDrawerState {}
+final class SinaDrawerLogoutUser extends SinaDrawerState {}
