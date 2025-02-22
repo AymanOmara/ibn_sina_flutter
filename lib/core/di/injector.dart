@@ -16,8 +16,7 @@ void registerDependencies(GetIt diInjector) async {
   getIt.registerSingleton(AppCubit(diInjector(),diInjector(),diInjector()));
 
   /// ********* Authentication **********
-  getIt.registerFactory(() => LoginCubit());
-
+  getIt.registerFactory(() => LoginCubit(diInjector()));
 
   /// ********* Notification **********
   getIt.registerFactory(() => NotificationCubit());

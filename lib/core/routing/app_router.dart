@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
+import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
+import 'package:ibn_sina_flutter/features/authentication/login/presentation/page/login_screen.dart';
 import 'package:ibn_sina_flutter/features/contact_us/presentation/page/contact_us_screen.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
@@ -35,13 +37,21 @@ class AppRouter {
             child: ProductsScreen(),
           ),
         );
-        case AppRoutes.productDetails:
+      case AppRoutes.productDetails:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<ProductDetailsCubit>(
               param1: settings.arguments as ProductEntity,
             ),
             child: ProductDetailsScreen(),
+          ),
+        );
+      case AppRoutes.login:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<LoginCubit>(),
+            child: LoginScreen(
+            ),
           ),
         );
       default:

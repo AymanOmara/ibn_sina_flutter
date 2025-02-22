@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/helper/utils.dart';
 
-class EcisTextField extends StatelessWidget {
-  const EcisTextField({
+class SinaTextField extends StatelessWidget {
+  const SinaTextField({
     super.key,
     required this.title,
     this.keyboardType = TextInputType.text,
@@ -45,11 +45,9 @@ class EcisTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "${required ? "* " : ""}$title"
+          "${required ? "* " : ""}$title",
         ),
-        SizedBox(
-          height: 12,
-        ),
+        const SizedBox(height: 12),
         TextFormField(
           onTap: onTap,
           keyboardType: keyboardType,
@@ -64,20 +62,41 @@ class EcisTextField extends StatelessWidget {
             prefixIcon: prefix,
             hintText: placeholder,
             fillColor: fillColor,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(
+                color: Colors.orange, // Orange border outline
+                width: 2.0,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(
+                color: Colors.orange, // Orange border outline
+                width: 2.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(
+                color: Colors.orange, // Orange border outline
+                width: 2.5,
+              ),
+            ),
           ),
         ),
       ],
     );
   }
 
-  factory EcisTextField.password({
+  factory SinaTextField.password({
     String title = 'password',
     required bool obscureText,
     required void Function() onPress,
     required void Function(String) onChange,
     required String? Function(String?) validator,
   }) {
-    return EcisTextField(
+    return SinaTextField(
       title: title.tr,
       onChanged: (password) {
         onChange(password);
@@ -98,13 +117,13 @@ class EcisTextField extends StatelessWidget {
     );
   }
 
-  factory EcisTextField.confirmPassword({
+  factory SinaTextField.confirmPassword({
     required bool obscureText,
     required void Function() onPress,
     required void Function(String) onChange,
     required String password,
   }) {
-    return EcisTextField(
+    return SinaTextField(
       title: 'confirmPassword'.tr,
       onChanged: (password) {
         onChange(password);

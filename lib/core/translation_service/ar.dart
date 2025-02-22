@@ -22,5 +22,9 @@ Map<String, String> ar = {
   "manufacturing":"بلد التصنيع",
   "expiring_date":"تاريخ الانتهاء",
   "price":"السعر",
-  "egp":"جنيه مصري"
+  "egp":"جنيه مصري",
+  "login_success": "تم تسجيل الدخول بنجاح",
+  "success": "نجاح",
+  "error": "خطأ",
+  "invalid_login": "اسم المستخدم أو كلمة المرور غير صحيحة"
 };

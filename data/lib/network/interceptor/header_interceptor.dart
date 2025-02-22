@@ -14,7 +14,6 @@ class HeaderInterceptor extends InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     Map<String, dynamic> headers = {
-      "Authorization": "Bearer ${userLocal.getAccessToken}",
       "Accept-Language": userLocal.getLocale,
       "Accept": "application/json",
     };

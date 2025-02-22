@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
+import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 
 import 'loading_button_cubit.dart';
 
@@ -31,7 +32,7 @@ class SinaLoadingButton extends StatelessWidget {
               borderRadius: const BorderRadius.all(
                 Radius.circular(100),
               ),
-              color: Theme.of(context).primaryColor,
+              color: orangeColor,
             ),
             duration: const Duration(milliseconds: 500),
             width: loadingState is Loading ? 60 : Get.width,

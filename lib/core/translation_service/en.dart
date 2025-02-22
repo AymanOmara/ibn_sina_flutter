@@ -22,5 +22,9 @@ Map<String, String> en = {
   "manufacturing":"Manufacturing",
   "expiring_date":"Expiring Date",
   "price":"Price",
-  "egp":"EGP"
+  "egp":"EGP",
+  "login_success":"Login Success",
+  "success":"Success",
+  "error":"Error",
+  "invalid_login":"Invalid Username or Password"
 };

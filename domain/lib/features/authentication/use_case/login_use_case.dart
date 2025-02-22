@@ -2,6 +2,7 @@ import 'package:domain/common/exceptions/network_exception.dart';
 import 'package:domain/common/response.dart';
 import 'package:domain/common/result.dart';
 import 'package:domain/features/authentication/entities/token_entity.dart';
+import 'package:domain/features/authentication/entities/user_entity.dart';
 import 'package:domain/features/authentication/repositories/i_auth_repository.dart';
 
 class LoginUseCase {
@@ -9,7 +10,7 @@ class LoginUseCase {
 
   const LoginUseCase(this._repository);
 
-  Future<Result<Response<TokenEntity>, NetworkException>> call(
+  Future<Result<UserEntity?, NetworkException>> call(
     String email,
     String password,
   ) async {
