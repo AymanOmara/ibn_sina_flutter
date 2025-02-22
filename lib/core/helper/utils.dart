@@ -108,11 +108,30 @@ extension ArrayUtils<T> on List<T> {
   }
 }
 
-Future<void> makePhoneCall() async {
-  final Uri url = Uri(scheme: 'tel', path: Misc.phoneNumber);
+Future<void> makePhoneCall(String phoneNumber) async {
+  final Uri url = Uri(scheme: 'tel', path: phoneNumber);
 
   if (await canLaunchUrl(url)) {
     await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+Future<void> openWhatsApp(String phoneNumber) async {
+  final Uri url = Uri.parse("https://wa.me/$phoneNumber");
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+Future<void> openUrl(String path) async {
+  final Uri url = Uri.parse(path);
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url,
+        mode: LaunchMode.externalApplication); // Ensure it opens externally
   } else {
     throw 'Could not launch $url';
   }

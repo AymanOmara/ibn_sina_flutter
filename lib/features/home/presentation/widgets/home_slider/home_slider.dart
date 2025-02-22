@@ -50,7 +50,6 @@ class HomeSlider extends StatelessWidget {
                   },
                 ),
               ),
-
               // Left Arrow
               Positioned(
                 left: 10,

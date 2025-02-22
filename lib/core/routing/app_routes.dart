@@ -15,6 +15,9 @@ class AppRoutes {
    /// ********* Notifications **********
    static const notifications = "notifications";
 
+   /// ********* contactUs **********
+   static const contactUs = "contactUs";
+
 
 
 }
