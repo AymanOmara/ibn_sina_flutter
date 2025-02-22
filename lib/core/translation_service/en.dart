@@ -14,5 +14,13 @@ Map<String, String> en = {
   "consumables": "Consumables",
   "orthodontics": "Orthodontics",
   "medical_clothes": "Medical Clothes",
-  "files_burs":"Files & Burs"
+  "files_burs":"Files & Burs",
+  "product_details":"Product Details",
+  "available":"Available",
+  "un_available":"Un Available",
+  "product_overview":"Product Overview",
+  "manufacturing":"Manufacturing",
+  "expiring_date":"Expiring Date",
+  "price":"Price",
+  "egp":"EGP"
 };

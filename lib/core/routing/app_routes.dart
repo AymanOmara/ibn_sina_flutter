@@ -21,6 +21,7 @@ class AppRoutes {
 
    /// ********* products **********
    static const products = "products";
+   static const productDetails = "productDetails";
 
 
 

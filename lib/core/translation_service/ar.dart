@@ -14,5 +14,13 @@ Map<String, String> ar = {
   "consumables": "مستهلكات",
   "orthodontics": "التقويم",
   "medical_clothes": "ملابس طبية",
-  "files_burs":"Files & Burs"
+  "files_burs":"Files & Burs",
+  "product_details":"تفاصيل المنتج",
+  "available":"متوفر في المخزن",
+  "un_available":"غير متوفر",
+  "product_overview":"نبذه عن المنتج",
+  "manufacturing":"بلد التصنيع",
+  "expiring_date":"تاريخ الانتهاء",
+  "price":"السعر",
+  "egp":"جنيه مصري"
 };
