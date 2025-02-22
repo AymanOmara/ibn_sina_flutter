@@ -1,0 +1,77 @@
+class ProductEntity {
+  final int productId;
+  final String productName;
+  final String productDescription;
+  final String madeIn;
+  final String price;
+  final String amount;
+  final String exDate;
+  final String others;
+  final String firstYear;
+  final String secondYear;
+  final String thirdYear;
+  final String fourthYear;
+  final String fifthYear;
+  final String teeth;
+  final String clothes;
+  final String type;
+  final String discount;
+  final List<String> images;
+  final String size;
+  final String guarantee;
+  final int rate;
+
+  ProductEntity({
+    required this.productId,
+    required this.productName,
+    required this.productDescription,
+    required this.madeIn,
+    required this.price,
+    required this.amount,
+    required this.exDate,
+    required this.others,
+    required this.firstYear,
+    required this.secondYear,
+    required this.thirdYear,
+    required this.fourthYear,
+    required this.fifthYear,
+    required this.teeth,
+    required this.clothes,
+    required this.type,
+    required this.discount,
+    required this.images,
+    required this.size,
+    required this.guarantee,
+    required this.rate,
+  });
+
+
+  /// Convert ProductEntity object to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      "ProductID": productId,
+      "ProuductName": productName,
+      "ProuductDescription": productDescription,
+      "MadeIn": madeIn,
+      "Price": price,
+      "Amount": amount,
+      "EXDate": exDate,
+      "Others": others,
+      "FirstYear": firstYear,
+      "SecondYear": secondYear,
+      "ThirdYear": thirdYear,
+      "FourthYear": fourthYear,
+      "FifthYear": fifthYear,
+      "Teeth": teeth,
+      "Clothes": clothes,
+      "Type": type,
+      "Discount": discount,
+      "Images": images,
+      "Size": size,
+      "Guarantee": guarantee,
+      "Rate": rate,
+    };
+  }
+
+
+}

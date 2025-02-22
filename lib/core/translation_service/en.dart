@@ -3,6 +3,16 @@ Map<String, String> en = {
   "login": "Login",
   "create_account": "Create Account",
   "contact_us": "Contact Us",
-  "contact_us_facebook": "To contact us via Facebook, you can use the following pages:",
-  "contact_whatsapp": "You can also reach us by phone or WhatsApp at the following numbers."
+  "contact_us_facebook":
+      "To contact us via Facebook, you can use the following pages:",
+  "contact_whatsapp":
+      "You can also reach us by phone or WhatsApp at the following numbers.",
+  "students_equipments": "Students Equipments",
+  "materials": "Materials",
+  "machines": "Machines",
+  "devices": "Devices",
+  "consumables": "Consumables",
+  "orthodontics": "Orthodontics",
+  "medical_clothes": "Medical Clothes",
+  "files_burs":"Files & Burs"
 };

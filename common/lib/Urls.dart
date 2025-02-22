@@ -4,4 +4,6 @@ class Urls {
   static const baseUrl =
       "http://ibnsinadental-001-site1.ftempurl.com/DentalShopWebService.asmx";
   static const banner = "/GetPanner";
+  
+  static const products = "/GetProudect";
 }

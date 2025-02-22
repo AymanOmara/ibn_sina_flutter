@@ -39,6 +39,7 @@ void _setUpInterceptors(GetIt injector, Dio dio) {
     PrettyDioLogger(
       request: true,
       responseBody: true,
+      requestBody: true,
     )
   ]);
 }

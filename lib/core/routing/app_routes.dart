@@ -19,5 +19,9 @@ class AppRoutes {
    static const contactUs = "contactUs";
 
 
+   /// ********* products **********
+   static const products = "products";
+
+
 
 }
