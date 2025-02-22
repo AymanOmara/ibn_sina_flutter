@@ -1,0 +1,128 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:ibn_sina_flutter/core/helper/utils.dart';
+
+class EcisTextField extends StatelessWidget {
+  const EcisTextField({
+    super.key,
+    required this.title,
+    this.keyboardType = TextInputType.text,
+    this.validator,
+    this.obscureText = false,
+    required this.onChanged,
+    this.controller,
+    this.suffixIcon,
+    this.required = false,
+    this.placeholder = "",
+    this.readOnly = false,
+    this.prefix,
+    this.onTap,
+    this.initialValue,
+    this.fillColor,
+    this.placeHolderStyle,
+  });
+
+  final String title;
+  final TextInputType keyboardType;
+  final String? Function(String?)? validator;
+  final bool obscureText;
+  final Function(String)? onChanged;
+  final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final bool required;
+  final String placeholder;
+  final bool readOnly;
+  final Widget? prefix;
+  final void Function()? onTap;
+  final String? initialValue;
+  final Color? fillColor;
+  final TextStyle? placeHolderStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "${required ? "* " : ""}$title"
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        TextFormField(
+          onTap: onTap,
+          keyboardType: keyboardType,
+          initialValue: controller == null ? initialValue : null,
+          controller: controller?..text = initialValue ?? '',
+          readOnly: readOnly,
+          obscureText: obscureText,
+          onChanged: onChanged,
+          validator: validator,
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon ?? const SizedBox(),
+            prefixIcon: prefix,
+            hintText: placeholder,
+            fillColor: fillColor,
+          ),
+        ),
+      ],
+    );
+  }
+
+  factory EcisTextField.password({
+    String title = 'password',
+    required bool obscureText,
+    required void Function() onPress,
+    required void Function(String) onChange,
+    required String? Function(String?) validator,
+  }) {
+    return EcisTextField(
+      title: title.tr,
+      onChanged: (password) {
+        onChange(password);
+      },
+      obscureText: obscureText,
+      suffixIcon: InkWell(
+        onTap: () => onPress(),
+        child: SizedBox(
+          child: SvgPicture.asset(
+            obscureText
+                ? "assets/images/open_eye.svg"
+                : "assets/images/open_eye.svg",
+            fit: BoxFit.none,
+          ),
+        ),
+      ),
+      validator: (password) => validator(password),
+    );
+  }
+
+  factory EcisTextField.confirmPassword({
+    required bool obscureText,
+    required void Function() onPress,
+    required void Function(String) onChange,
+    required String password,
+  }) {
+    return EcisTextField(
+      title: 'confirmPassword'.tr,
+      onChanged: (password) {
+        onChange(password);
+      },
+      obscureText: obscureText,
+      suffixIcon: InkWell(
+        onTap: () => onPress(),
+        child: SizedBox(
+          child: SvgPicture.asset(
+            obscureText
+                ? "assets/images/open_eye.svg"
+                : "assets/images/open_eye.svg",
+            fit: BoxFit.none,
+          ),
+        ),
+      ),
+      validator: (confirmPassword) =>
+          Validator.validateConfirmPassword(confirmPassword, password),
+    );
+  }
+}
