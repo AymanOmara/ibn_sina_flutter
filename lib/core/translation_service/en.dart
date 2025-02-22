@@ -34,5 +34,6 @@ Map<String, String> en = {
   "password_too_short": "Password must be at least 6 characters long",
   "logout":"Logout",
   "logout_success": "Logged out successfully",
-  "delete_account":"Delete Account"
+  "delete_account":"Delete Account",
+  "account_deleted_successfully": "Account deleted successfully"
 };

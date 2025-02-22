@@ -23,7 +23,7 @@ void registerDependencies(GetIt diInjector) async {
 
   /// ********* Home **********
   getIt.registerFactory(() => HomeCubit(diInjector()));
-  getIt.registerFactory(() => SinaDrawerCubit(diInjector(),diInjector()));
+  getIt.registerFactory(() => SinaDrawerCubit(diInjector(),diInjector(),diInjector()));
 
   /// ********* Products **********
   getIt.registerFactoryParam((p1,_) => ProductsCubit(p1 as HomeCategoryDisplay,diInjector()));

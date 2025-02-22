@@ -9,6 +9,8 @@ import 'package:domain/features/authentication/entities/user_entity.dart';
 abstract interface class IAuthRepository {
   Future<Result<UserEntity?, NetworkException>> login(String email, String password);
 
+  Future<Result<bool,NetworkException>> deleteAccount();
+
   // Future<Result<Response<bool>, NetworkException>> verifyEmail(String email);
   //
   // Future<Result<Response<bool>, NetworkException>> registration(RegistrationEntity entity);

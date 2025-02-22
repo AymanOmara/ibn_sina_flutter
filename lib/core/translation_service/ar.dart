@@ -34,5 +34,7 @@ Map<String, String> ar = {
   "password_too_short": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
   "logout":"تسجيل خروج",
   "logout_success": "تم تسجيل الخروج بنجاح",
-  "delete_account":"حذف الحساب"
+  "delete_account":"حذف الحساب",
+  "account_deleted_successfully": "تم حذف الحساب بنجاح"
+
 };

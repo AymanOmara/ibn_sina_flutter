@@ -8,4 +8,5 @@ class Urls {
   static const products = "/GetProudect";
 
   static const login = "/LogIn";
+  static const deleteAccount = "/DeleteAccount?userid=";
 }

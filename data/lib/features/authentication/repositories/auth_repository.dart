@@ -1,4 +1,6 @@
+import 'package:data/features/authentication/model/delete_account_model.dart';
 import 'package:data/features/authentication/model/user_model.dart';
+import 'package:data/features/authentication/request/delete_account_request.dart';
 import 'package:data/features/authentication/request/login_request.dart';
 
 import 'package:data/network/i_base_api.dart';
@@ -33,5 +35,17 @@ class AuthRepository implements IAuthRepository {
     }, onFailure: (e) {
       return Failure(e);
     });
+  }
+
+  @override
+  Future<Result<bool, NetworkException>> deleteAccount() async {
+    var result = await _service.fetchData<DeleteAccountModel>(
+        DeleteAccountRequest(userId: _userLocal.getUser()?.userId ?? ""),
+        data: DeleteAccountModel());
+    return result.fold(
+        onSuccess: (data) {
+          return Success(data?.success ?? false);
+        },
+        onFailure: (e) => Failure(e));
   }
 }

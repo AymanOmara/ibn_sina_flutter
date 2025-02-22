@@ -21,6 +21,30 @@ class SinaNavigationDrawer extends StatelessWidget {
               "logout_success".tr,
               backgroundColor: Colors.green,
             );
+          } else if (state is SinaDrawerDeleteAccountResult) {
+            state.result.fold(
+                onSuccess: (data) {
+                  if(data){
+                    Get.snackbar(
+                      "success".tr,
+                      "account_deleted_successfully".tr,
+                      backgroundColor: Colors.green,
+                    );
+                  }else{
+                    Get.snackbar(
+                      "error".tr,
+                      "error".tr,
+                      backgroundColor: Colors.red,
+                    );
+                  }
+                },
+                onFailure: (e) {
+                  Get.snackbar(
+                    "error".tr,
+                    e.message,
+                    backgroundColor: Colors.red,
+                  );
+                });
           }
         },
         builder: (context, state) {
@@ -55,7 +79,6 @@ class SinaNavigationDrawer extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-
         InkWell(
           onTap: () {
             Get.toNamed(AppRoutes.contactUs);
@@ -118,7 +141,7 @@ class SinaNavigationDrawer extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            cubit.logout();
+            cubit.deleteAccount();
           },
           child: Container(
             alignment: Alignment.center,
@@ -146,6 +169,7 @@ class SinaNavigationDrawer extends StatelessWidget {
             ),
           ),
         ),
+        cubit.loading ? CircularProgressIndicator(color: Colors.white,) :SizedBox()
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:domain/features/app/use_case/get_current_language_use_case.dart'
 import 'package:domain/features/app/use_case/init_language_use_case.dart';
 import 'package:domain/features/app/use_case/is_user_logged_in_use_case.dart';
 import 'package:domain/features/app/use_case/update_language_use_case.dart';
+import 'package:domain/features/authentication/use_case/delete_account_use_case.dart';
 import 'package:domain/features/authentication/use_case/login_use_case.dart';
 import 'package:domain/features/home/use_case/fetch_user_details_use_case.dart';
 import 'package:domain/features/home/use_case/home_banner_use_case.dart';
@@ -18,6 +19,7 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
 
   /// ********* Auth **********
   diInjector.registerFactory(() => LoginUseCase(diInjector()));
+  diInjector.registerFactory(() => DeleteAccountUseCase(diInjector()));
   // diInjector.registerFactory(() => EmailVerificationUseCase(diInjector()));
   // diInjector.registerFactory(() => RegistrationUseCase(diInjector()));
   // diInjector.registerFactory(() => VerifyOtpUseCase(diInjector()));
