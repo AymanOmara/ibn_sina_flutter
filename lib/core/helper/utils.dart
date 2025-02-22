@@ -52,16 +52,8 @@ class Validator {
   static String? validatePassword(String? password) {
     if (password.isNullOrEmpty()) {
       return "required_field".tr;
-    } else if ((password?.length ?? 0) < 8) {
+    } else if ((password?.length ?? 0) < 6) {
       return "password_too_short".tr;
-    } else if (!RegExp(r'[A-Z]').hasMatch(password!)) {
-      return "password_missing_uppercase".tr;
-    } else if (!RegExp(r'[a-z]').hasMatch(password)) {
-      return "password_missing_lowercase".tr;
-    } else if (!RegExp(r'[0-9]').hasMatch(password)) {
-      return "password_missing_digit".tr;
-    } else if (!RegExp(r'[!@#\$%^&*]').hasMatch(password)) {
-      return "password_missing_special_char".tr;
     }
     return null;
   }

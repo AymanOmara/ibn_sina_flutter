@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ibn_sina_flutter/core/helper/utils.dart';
 import 'package:ibn_sina_flutter/core/ui/ecis_text_field.dart';
 import 'package:ibn_sina_flutter/core/ui/loading/sina_loading_button.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
@@ -27,10 +28,11 @@ class LoginScreen extends StatelessWidget {
                     backgroundColor: Colors.red
                 );
               }else{
+                Get.back();
                 Get.snackbar(
                     "success".tr,
                     "login_success".tr,
-                    backgroundColor: Colors.red
+                    backgroundColor: Colors.green
                 );
               }
             },
@@ -47,48 +49,62 @@ class LoginScreen extends StatelessWidget {
       builder: (context, state) {
         LoginCubit cubit = BlocProvider.of(context);
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Form(
               key: formKey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  spacing: 20,
-                  children: [
-                    SinaTextField(
-                      title: "email".tr,
-                      onChanged: (email) {
-                        cubit.email = email;
-                      },
-                    ),
-                    SinaTextField(
-                      title: "password".tr,
-                      obscureText: true,
-                      onChanged: (password) {
-                        cubit.password = password;
-                      },
-                    ),
-                    SinaLoadingButton(
-                      loadingState: cubit.loading,
-                      child: InkWell(
-                        onTap: () {
-                          cubit.submit();
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/login_background.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    spacing: 20,
+                    children: [
+                      SizedBox(height: 220,),
+                      SinaTextField(
+                        title: "email".tr,
+                        onChanged: (email) {
+                          cubit.email = email;
                         },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: orangeColor,
-                          ),
-                          child: Text(
-                            "login".tr,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
+                        validator: Validator.validateEmail,
+                      ),
+                      SinaTextField(
+                        title: "password".tr,
+                        obscureText: true,
+                        onChanged: (password) {
+                          cubit.password = password;
+                        },
+                        validator: Validator.validatePassword,
+                      ),
+                      SinaLoadingButton(
+                        loadingState: cubit.loading,
+                        child: InkWell(
+                          onTap: () {
+                            if(formKey.currentState?.validate() == true){
+                              cubit.submit();
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: orangeColor,
+                            ),
+                            child: Text(
+                              "login".tr,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

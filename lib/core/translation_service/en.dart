@@ -26,5 +26,10 @@ Map<String, String> en = {
   "login_success":"Login Success",
   "success":"Success",
   "error":"Error",
-  "invalid_login":"Invalid Username or Password"
+  "invalid_login":"Invalid Username or Password",
+  "email":"Email",
+  "password":"Password",
+  "required_field": "This field is required",
+  "invalid_email": "Invalid email format",
+  "password_too_short": "Password must be at least 6 characters long"
 };
