@@ -2,6 +2,7 @@ import 'package:domain/features/products/entity/product_entity.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ibn_sina_flutter/features/app/business_logic/app_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
+import 'package:ibn_sina_flutter/features/authentication/registration/business_logic/registration_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_drawer_cubit.dart';
@@ -17,6 +18,7 @@ void registerDependencies(GetIt diInjector) async {
 
   /// ********* Authentication **********
   getIt.registerFactory(() => LoginCubit(diInjector()));
+  getIt.registerFactory(() => RegistrationCubit(diInjector()));
 
   /// ********* Notification **********
   getIt.registerFactory(() => NotificationCubit());

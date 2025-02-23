@@ -1,4 +1,5 @@
 import 'package:data/features/authentication/model/delete_account_model.dart';
+import 'package:data/features/authentication/model/registration_model.dart';
 import 'package:data/features/authentication/model/user_model.dart';
 import 'package:data/features/authentication/request/delete_account_request.dart';
 import 'package:data/features/authentication/request/login_request.dart';
@@ -9,6 +10,7 @@ import 'package:domain/common/exceptions/network_exception.dart';
 
 import 'package:domain/common/result.dart';
 import 'package:domain/features/authentication/entities/registration_entity.dart';
+import 'package:domain/features/authentication/entities/registration_response.dart';
 import 'package:domain/features/authentication/entities/user_entity.dart';
 import 'package:domain/features/authentication/repositories/i_auth_repository.dart';
 import 'package:domain/locale_storage/i_user_local.dart';
@@ -52,7 +54,16 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<void> createUser(RegistrationEntity entity) async {
-    var result = await _service.fetchData(RegistrationRequest(data: entity));
+  Future<Result<RegistrationResponseStatus, NetworkException>> createUser(
+    RegistrationEntity entity,
+  ) async {
+    var result = await _service.fetchData<RegistrationModel>(
+        RegistrationRequest(data: entity),
+        data: RegistrationModel());
+    return result.fold(onSuccess: (data) {
+      return Success(data?.status ?? RegistrationResponseStatus.failure);
+    }, onFailure: (e) {
+      return Failure(e);
+    });
   }
 }

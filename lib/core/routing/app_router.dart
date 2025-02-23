@@ -5,6 +5,8 @@ import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/presentation/page/login_screen.dart';
+import 'package:ibn_sina_flutter/features/authentication/registration/business_logic/registration_cubit.dart';
+import 'package:ibn_sina_flutter/features/authentication/registration/presentation/page/registration_screen.dart';
 import 'package:ibn_sina_flutter/features/contact_us/presentation/page/contact_us_screen.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
@@ -50,8 +52,14 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => getIt<LoginCubit>(),
-            child: LoginScreen(
-            ),
+            child: LoginScreen(),
+          ),
+        );
+      case AppRoutes.registration:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<RegistrationCubit>(),
+            child: RegistrationScreen(),
           ),
         );
       default:

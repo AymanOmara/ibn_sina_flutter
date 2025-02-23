@@ -105,11 +105,8 @@ class SinaTextField extends StatelessWidget {
       suffixIcon: InkWell(
         onTap: () => onPress(),
         child: SizedBox(
-          child: SvgPicture.asset(
-            obscureText
-                ? "assets/images/open_eye.svg"
-                : "assets/images/open_eye.svg",
-            fit: BoxFit.none,
+          child: Icon(
+            Icons.remove_red_eye,
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:domain/common/response.dart';
 import 'package:domain/common/result.dart';
 import 'package:domain/features/authentication/entities/forget_password_entity.dart';
 import 'package:domain/features/authentication/entities/registration_entity.dart';
+import 'package:domain/features/authentication/entities/registration_response.dart';
 import 'package:domain/features/authentication/entities/token_entity.dart';
 import 'package:domain/features/authentication/entities/user_entity.dart';
 
@@ -10,15 +11,6 @@ abstract interface class IAuthRepository {
   Future<Result<UserEntity?, NetworkException>> login(String email, String password);
 
   Future<Result<bool,NetworkException>> deleteAccount();
-  Future<void> createUser(RegistrationEntity entity);
 
-  // Future<Result<Response<bool>, NetworkException>> verifyEmail(String email);
-  //
-  // Future<Result<Response<bool>, NetworkException>> registration(RegistrationEntity entity);
-  //
-  // Future<Result<Response<bool>, NetworkException>> verifyOtp(String otp, String email);
-  //
-  // Future<Result<Response<bool>, NetworkException>> forgetPassword(ForgetPasswordEntity entity);
-  //
-  // Future<Result<Response<bool>, NetworkException>> registerFcmToken();
+  Future<Result<RegistrationResponseStatus,NetworkException>> createUser(RegistrationEntity entity);
 }

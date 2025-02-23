@@ -22,29 +22,27 @@ class SinaNavigationDrawer extends StatelessWidget {
               backgroundColor: Colors.green,
             );
           } else if (state is SinaDrawerDeleteAccountResult) {
-            state.result.fold(
-                onSuccess: (data) {
-                  if(data){
-                    Get.snackbar(
-                      "success".tr,
-                      "account_deleted_successfully".tr,
-                      backgroundColor: Colors.green,
-                    );
-                  }else{
-                    Get.snackbar(
-                      "error".tr,
-                      "error".tr,
-                      backgroundColor: Colors.red,
-                    );
-                  }
-                },
-                onFailure: (e) {
-                  Get.snackbar(
-                    "error".tr,
-                    e.message,
-                    backgroundColor: Colors.red,
-                  );
-                });
+            state.result.fold(onSuccess: (data) {
+              if (data) {
+                Get.snackbar(
+                  "success".tr,
+                  "account_deleted_successfully".tr,
+                  backgroundColor: Colors.green,
+                );
+              } else {
+                Get.snackbar(
+                  "error".tr,
+                  "error".tr,
+                  backgroundColor: Colors.red,
+                );
+              }
+            }, onFailure: (e) {
+              Get.snackbar(
+                "error".tr,
+                e.message,
+                backgroundColor: Colors.red,
+              );
+            });
           }
         },
         builder: (context, state) {
@@ -169,7 +167,11 @@ class SinaNavigationDrawer extends StatelessWidget {
             ),
           ),
         ),
-        cubit.loading ? CircularProgressIndicator(color: Colors.white,) :SizedBox()
+        cubit.loading
+            ? CircularProgressIndicator(
+                color: Colors.white,
+              )
+            : SizedBox()
       ],
     );
   }
@@ -210,29 +212,35 @@ class SinaNavigationDrawer extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                20,
+        InkWell(
+          onTap: () {
+            Get.toNamed(AppRoutes.registration);
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20,
+                ),
               ),
             ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "create_account".tr,
-                style: TextStyle(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "create_account".tr,
+                  style: TextStyle(
                     fontSize: 16,
                     color: orangeColor,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         InkWell(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
 
 class LoadingWidget extends StatelessWidget {
@@ -29,8 +30,20 @@ class LoadingWidget extends StatelessWidget {
           ? emptyWidget ?? _emptyWidget()
           : _baseWidget(successWidget),
       LoadingException(exception: final exception) => _baseWidget(
-          Text(
-            exception.message,
+          Column(
+            children: [
+              Text(
+                exception.message,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  onRetry();
+                },
+                child: Text(
+                  "retry".tr,
+                ),
+              )
+            ],
           ),
         ),
     };

@@ -3,6 +3,7 @@ class RegistrationEntity {
   String userName = "";
   String email = "";
   String password = "";
+  String confirmPassword = "";
   String phoneNumber = "";
   String userPhone = "D";
 }

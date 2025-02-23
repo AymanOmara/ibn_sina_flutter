@@ -7,14 +7,19 @@ import 'package:domain/features/authentication/entities/registration_entity.dart
 class RegistrationRequest extends IRemoteTarget {
   final RegistrationEntity data;
 
-  RegistrationRequest({required this.data}) {
+  RegistrationRequest({
+    required this.data,
+  }) {
     body = "Content=${Uri.encodeComponent(
       jsonEncode({
         "userName": data.userName,
         "password": data.password,
-        "UserId": data.id,
         "UserPhone": data.phoneNumber,
-        "userPhoto": data.userPhone,
+        "UserPhoto": data.userPhone,
+        "UserEmail": data.email,
+        "UserId": data.id,
+        "UserName": data.userName,
+        "UserPassword": data.password,
       }),
     )}";
   }
