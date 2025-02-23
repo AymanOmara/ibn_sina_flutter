@@ -10,6 +10,7 @@ abstract interface class IAuthRepository {
   Future<Result<UserEntity?, NetworkException>> login(String email, String password);
 
   Future<Result<bool,NetworkException>> deleteAccount();
+  Future<void> createUser(RegistrationEntity entity);
 
   // Future<Result<Response<bool>, NetworkException>> verifyEmail(String email);
   //

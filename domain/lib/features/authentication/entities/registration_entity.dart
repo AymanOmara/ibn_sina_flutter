@@ -1,8 +1,8 @@
 class RegistrationEntity {
+  String id = "0";
+  String userName = "";
   String email = "";
-  String firstName = "";
-  String lastName = "";
   String password = "";
   String phoneNumber = "";
-  String passwordConfirmation = "";
+  String userPhone = "D";
 }
