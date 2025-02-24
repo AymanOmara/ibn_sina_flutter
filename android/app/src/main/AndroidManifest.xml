@@ -7,7 +7,7 @@
         </intent>
     </queries>
     <application
-        android:label="ibn_sina_flutter"
+        android:label="Ibnsina Dent"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
