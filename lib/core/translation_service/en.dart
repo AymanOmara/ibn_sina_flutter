@@ -45,5 +45,7 @@ Map<String, String> en = {
   "error_phone_exists": "Phone number already exists",
   "registration_failed": "Registration failed",
   "error_unknown": "Unknown error occurred",
-  "registration":"Registration"
+  "registration":"Registration",
+  "empty_notifications":"Empty Notifications",
+  "notifications":"Notifications"
 };

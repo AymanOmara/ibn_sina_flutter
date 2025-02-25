@@ -1,13 +1,14 @@
+import 'package:domain/features/notifications/entity/notification_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({
     super.key,
-    required this.isRead,
+    required this.notification,
   });
 
-  final bool isRead;
+  final NotificationEntity notification;
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +22,26 @@ class NotificationWidget extends StatelessWidget {
           ),
         ),
       ),
-      child: Row(
+      child: Column(
         children: [
-          SvgPicture.asset(
-            "assets/images/success.svg",
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-              ],
+          Text(
+            notification.content,
+            style: TextStyle(
+              color: orangeColor,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(
             width: 14,
+          ),
+          Text(
+            notification.time,
+            style: TextStyle(
+              color: blue,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/helper/utils.dart';
 
@@ -129,11 +128,8 @@ class SinaTextField extends StatelessWidget {
       suffixIcon: InkWell(
         onTap: () => onPress(),
         child: SizedBox(
-          child: SvgPicture.asset(
-            obscureText
-                ? "assets/images/open_eye.svg"
-                : "assets/images/open_eye.svg",
-            fit: BoxFit.none,
+          child: Icon(
+            Icons.remove_red_eye,
           ),
         ),
       ),

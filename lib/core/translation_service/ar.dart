@@ -45,5 +45,7 @@ Map<String, String> ar = {
   "error_phone_exists": "رقم الهاتف مستخدم بالفعل",
   "registration_failed": "فشل التسجيل",
   "error_unknown": "حدث خطأ غير معروف",
-  "registration":"تسجيل"
+  "registration":"تسجيل",
+  "empty_notifications":"لا توجد لديك اشعارات",
+  "notifications":"الاشعارات"
 };

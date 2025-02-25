@@ -18,12 +18,12 @@ class HomeCubit extends Cubit<HomeState> {
   List<String> banners = [];
   LoadingState loadingState = Loading();
   List<HomeCategoryDisplay> categories = [
-    HomeCategoryDisplay(
-      color: orangeColor,
-      title: "students_equipments".tr,
-      iconPath: "students_equipments_ic",
-      productType: ProductType.studentsEquipments,
-    ),
+    // HomeCategoryDisplay(
+    //   color: orangeColor,
+    //   title: "students_equipments".tr,
+    //   iconPath: "students_equipments_ic",
+    //   productType: ProductType.studentsEquipments,
+    // ),
     HomeCategoryDisplay(
       color: blue,
       title: "materials".tr,

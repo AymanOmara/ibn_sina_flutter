@@ -21,7 +21,7 @@ void registerDependencies(GetIt diInjector) async {
   getIt.registerFactory(() => RegistrationCubit(diInjector()));
 
   /// ********* Notification **********
-  getIt.registerFactory(() => NotificationCubit());
+  getIt.registerFactory(() => NotificationCubit(diInjector()));
 
   /// ********* Home **********
   getIt.registerFactory(() => HomeCubit(diInjector()));

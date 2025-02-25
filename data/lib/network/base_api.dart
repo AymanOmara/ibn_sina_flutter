@@ -10,7 +10,6 @@ import 'package:domain/common/refresh_token_exception_handler.dart';
 import 'package:domain/common/result.dart';
 import 'decode_able.dart';
 import 'i_base_api.dart';
-import 'package:xml/xml.dart';
 
 class BaseApi implements IAPIService {
   final Dio _dio;

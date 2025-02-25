@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
 
@@ -74,9 +73,9 @@ class LoadingWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(
-          emptyImagePath,
-        ),
+        // SvgPicture.asset(
+        //   emptyImagePath,
+        // ),
         const SizedBox(
           height: 30,
         ),

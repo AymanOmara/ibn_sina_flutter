@@ -109,6 +109,37 @@ class SinaNavigationDrawer extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
+            Get.toNamed(AppRoutes.notifications);
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20,
+                ),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "notifications".tr,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: orangeColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
             cubit.logout();
           },
           child: Container(

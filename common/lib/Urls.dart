@@ -10,4 +10,6 @@ class Urls {
   static const login = "/LogIn";
   static const deleteAccount = "/DeleteAccount?userid=";
   static const createAccount = "/CreateAccount";
+  
+  static const notifications = "/GetNotifiction";
 }
