@@ -46,7 +46,7 @@ class ProductEntity {
   });
 
 
-  /// Convert ProductEntity object to JSON
+
   Map<String, dynamic> toJson() {
     return {
       "ProductID": productId,

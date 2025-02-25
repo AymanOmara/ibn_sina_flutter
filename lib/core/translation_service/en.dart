@@ -47,5 +47,9 @@ Map<String, String> en = {
   "error_unknown": "Unknown error occurred",
   "registration":"Registration",
   "empty_notifications":"Empty Notifications",
-  "notifications":"Notifications"
+  "notifications":"Notifications",
+  "product_added_to_cart":"Product Added To Cart Successfully",
+  "empty_cart":"Empty Cart",
+  "order_now":"Order Now",
+  "no_products_in_cart":"No Products in cart"
 };

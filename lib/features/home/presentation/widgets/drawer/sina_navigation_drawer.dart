@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
+import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_drawer_button.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_drawer_cubit.dart';
 
 class SinaNavigationDrawer extends StatelessWidget {
@@ -77,127 +78,21 @@ class SinaNavigationDrawer extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        InkWell(
-          onTap: () {
-            Get.toNamed(AppRoutes.contactUs);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "contact_us".tr,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: orangeColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Get.toNamed(AppRoutes.notifications);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "notifications".tr,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: orangeColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            cubit.logout();
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "logout".tr,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: orangeColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            cubit.deleteAccount();
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "delete_account".tr,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: orangeColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
+        SinaDrawerButton(title: "contact_us".tr, onTap: (){
+          Get.toNamed(AppRoutes.contactUs);
+        }),
+        SinaDrawerButton(title: "notifications".tr, onTap: (){
+          Get.toNamed(AppRoutes.notifications);
+        }),
+        SinaDrawerButton(title: "logout".tr, onTap: (){
+          cubit.logout();
+        }),
+
+        SinaDrawerButton(title: "delete_account".tr, onTap: (){
+          cubit.deleteAccount();
+        }),
+
+
         cubit.loading
             ? CircularProgressIndicator(
                 color: Colors.white,
@@ -213,97 +108,15 @@ class SinaNavigationDrawer extends StatelessWidget {
         SizedBox(
           height: Get.mediaQuery.padding.top + 20,
         ),
-        InkWell(
-          onTap: () {
-            Get.toNamed(AppRoutes.login);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "login".tr,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: orangeColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Get.toNamed(AppRoutes.registration);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "create_account".tr,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: orangeColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Get.toNamed(AppRoutes.contactUs);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  20,
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "contact_us".tr,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: orangeColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
+        SinaDrawerButton(title: "login".tr, onTap: (){
+          Get.toNamed(AppRoutes.login);
+        }),
+        SinaDrawerButton(title: "create_account".tr, onTap: (){
+          Get.toNamed(AppRoutes.registration);
+        }),
+        SinaDrawerButton(title: "contact_us".tr, onTap: (){
+          Get.toNamed(AppRoutes.contactUs);
+        }),
       ],
     );
   }

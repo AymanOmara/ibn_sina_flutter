@@ -7,6 +7,7 @@ import 'package:ibn_sina_flutter/features/authentication/login/business_logic/lo
 import 'package:ibn_sina_flutter/features/authentication/login/presentation/page/login_screen.dart';
 import 'package:ibn_sina_flutter/features/authentication/registration/business_logic/registration_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/registration/presentation/page/registration_screen.dart';
+import 'package:ibn_sina_flutter/features/cart/presentation/page/cart_screen.dart';
 import 'package:ibn_sina_flutter/features/contact_us/presentation/page/contact_us_screen.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
@@ -64,12 +65,16 @@ class AppRouter {
             child: RegistrationScreen(),
           ),
         );
-        case AppRoutes.notifications:
+      case AppRoutes.notifications:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => getIt<NotificationCubit>(),
             child: NotificationsScreen(),
           ),
+        );
+      case AppRoutes.cart:
+        return MaterialPageRoute(
+          builder: (_) => CartScreen(),
         );
       default:
         return null;

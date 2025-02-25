@@ -47,5 +47,9 @@ Map<String, String> ar = {
   "error_unknown": "حدث خطأ غير معروف",
   "registration":"تسجيل",
   "empty_notifications":"لا توجد لديك اشعارات",
-  "notifications":"الاشعارات"
+  "notifications":"الاشعارات",
+  "product_added_to_cart":"تم اضافه المنتج الي عربيه التسوق بنجاح",
+  "empty_cart":"تفريغ عربه التسوق",
+  "order_now":"اطلب الان",
+  "no_products_in_cart":"لا يوجد منتجات في عربه التسوق"
 };

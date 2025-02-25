@@ -5,6 +5,10 @@ import 'package:domain/features/app/use_case/update_language_use_case.dart';
 import 'package:domain/features/authentication/use_case/delete_account_use_case.dart';
 import 'package:domain/features/authentication/use_case/login_use_case.dart';
 import 'package:domain/features/authentication/use_case/registration_use_case.dart';
+import 'package:domain/features/cart/use_case/add_to_cart_use_case.dart';
+import 'package:domain/features/cart/use_case/empty_cart_use_case.dart';
+import 'package:domain/features/cart/use_case/get_cart_products.dart';
+import 'package:domain/features/cart/use_case/remove_from_cart.dart';
 import 'package:domain/features/home/use_case/fetch_user_details_use_case.dart';
 import 'package:domain/features/home/use_case/home_banner_use_case.dart';
 import 'package:domain/features/home/use_case/logout_use_case.dart';
@@ -27,7 +31,7 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
   // diInjector.registerFactory(() => RegistrationUseCase(diInjector()));
   // diInjector.registerFactory(() => VerifyOtpUseCase(diInjector()));
   // diInjector.registerFactory(() => ForgetPasswordUseCase(diInjector()));
-  //
+
   /// ********* Home **********
   diInjector.registerFactory(() => HomeBannerUseCase(diInjector()));
   diInjector.registerFactory(() => FetchUserDetailsUseCase(diInjector()));
@@ -35,6 +39,11 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
 
   /// ********* Products **********
   diInjector.registerFactory(() => FetchProductsUseCase(diInjector()));
+
+  diInjector.registerFactory(() => AddToCartUseCase(diInjector()));
+  diInjector.registerFactory(() => RemoveCartProductUseCase(diInjector()));
+  diInjector.registerFactory(() => GetCartProductUseCase(diInjector()));
+  diInjector.registerFactory(() => EmptyCartUseCase(diInjector()));
 
 
   /// ********* Notifications **********

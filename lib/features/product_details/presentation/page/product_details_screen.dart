@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/ui/sina_top_navigation_bar.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
+import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
 import 'package:ibn_sina_flutter/features/product_details/business_logic/product_details_cubit.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -30,6 +32,23 @@ class ProductDetailsScreen extends StatelessWidget {
                   errorWidget: (context, url, error) =>
                       const Icon(Icons.error, size: 50),
                   fit: BoxFit.fill,
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        getIt<CartCubit>().addToCart(cubit.product);
+                        Get.snackbar(
+                          "success".tr,
+                          "product_added_to_cart".tr,
+                          backgroundColor: Colors.green,
+                        );
+                      },
+                      icon: Icon(
+                        Icons.add_shopping_cart,
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(

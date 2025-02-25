@@ -8,6 +8,7 @@ import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 import 'package:ibn_sina_flutter/features/app/business_logic/app_cubit.dart';
 import 'package:ibn_sina_flutter/features/app/business_logic/app_states.dart';
+import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
 import 'core/helper/refresh_token_exception_handler.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/app_routes.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => getIt<AppCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<CartCubit>(),
         ),
       ],
       child: BlocBuilder<AppCubit, AppStates>(
