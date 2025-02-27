@@ -1,6 +1,7 @@
 import 'package:domain/features/products/entity/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
@@ -18,6 +19,9 @@ import 'package:ibn_sina_flutter/features/product_details/business_logic/product
 import 'package:ibn_sina_flutter/features/product_details/presentation/page/product_details_screen.dart';
 import 'package:ibn_sina_flutter/features/products/business_logic/products_cubit.dart';
 import 'package:ibn_sina_flutter/features/products/presentation/page/products_screen.dart';
+import 'package:ibn_sina_flutter/features/submit_order/business_logic/submit_order_cubit.dart';
+
+import '../../features/submit_order/presentation/page/submit_order_screen.dart';
 
 class AppRouter {
   Route? generateRouter(RouteSettings settings) {
@@ -75,6 +79,14 @@ class AppRouter {
       case AppRoutes.cart:
         return MaterialPageRoute(
           builder: (_) => CartScreen(),
+        );
+      case AppRoutes.order:
+        return DialogRoute(
+          context: Get.context!,
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<SubmitOrderCubit>(),
+            child: SubmitOrderScreen(),
+          ),
         );
       default:
         return null;

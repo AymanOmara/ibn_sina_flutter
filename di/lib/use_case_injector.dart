@@ -13,6 +13,7 @@ import 'package:domain/features/home/use_case/fetch_user_details_use_case.dart';
 import 'package:domain/features/home/use_case/home_banner_use_case.dart';
 import 'package:domain/features/home/use_case/logout_use_case.dart';
 import 'package:domain/features/notifications/use_case/get_use_notifications_use_case.dart';
+import 'package:domain/features/order/use_case/create_order_use_case.dart';
 import 'package:domain/features/products/use_case/fetch_products_use_case.dart';
 import 'package:get_it/get_it.dart';
 
@@ -48,4 +49,7 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
 
   /// ********* Notifications **********
   diInjector.registerFactory(() => GetUserNotificationsUseCase(diInjector()));
+
+  /// ********* Order **********
+  diInjector.registerFactory(()=> CreateOrderUseCase(diInjector()));
 }

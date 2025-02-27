@@ -12,4 +12,5 @@ class Urls {
   static const createAccount = "/CreateAccount";
   
   static const notifications = "/GetNotifiction";
+  static const createOrder = "/MakeOrder";
 }

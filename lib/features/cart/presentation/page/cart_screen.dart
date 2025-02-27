@@ -6,6 +6,7 @@ import 'package:ibn_sina_flutter/core/ui/sina_top_navigation_bar.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
 import 'package:ibn_sina_flutter/features/cart/presentation/widgets/cart_widget.dart';
+import 'package:ibn_sina_flutter/features/submit_order/presentation/page/submit_order_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

@@ -10,6 +10,7 @@ import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_
 import 'package:ibn_sina_flutter/features/notifications/business_logic/notification_cubit.dart';
 import 'package:ibn_sina_flutter/features/product_details/business_logic/product_details_cubit.dart';
 import 'package:ibn_sina_flutter/features/products/business_logic/products_cubit.dart';
+import 'package:ibn_sina_flutter/features/submit_order/business_logic/submit_order_cubit.dart';
 
 var getIt = GetIt.I;
 
@@ -32,4 +33,5 @@ void registerDependencies(GetIt diInjector) async {
   getIt.registerFactoryParam((p1, _) => ProductsCubit(p1 as HomeCategoryDisplay, diInjector()));
   getIt.registerFactoryParam((p1, _) => ProductDetailsCubit(p1 as ProductEntity));
   getIt.registerSingleton(CartCubit(diInjector(), diInjector(), diInjector(), diInjector()));
+  getIt.registerFactory(() => SubmitOrderCubit(diInjector(),diInjector()));
 }
