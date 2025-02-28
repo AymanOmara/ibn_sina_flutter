@@ -13,9 +13,12 @@ import 'package:ibn_sina_flutter/features/cart/presentation/page/cart_screen.dar
 import 'package:ibn_sina_flutter/features/contact_us/presentation/page/contact_us_screen.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
+import 'package:ibn_sina_flutter/features/home/display/i_user_logged_in_state.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/page/home_screen.dart';
 import 'package:ibn_sina_flutter/features/notifications/business_logic/notification_cubit.dart';
 import 'package:ibn_sina_flutter/features/notifications/presentation/page/notifications_screen.dart';
+import 'package:ibn_sina_flutter/features/orders_history/business_logic/orders_history_cubit.dart';
+import 'package:ibn_sina_flutter/features/orders_history/presentation/page/order_history_screen.dart';
 import 'package:ibn_sina_flutter/features/product_details/business_logic/product_details_cubit.dart';
 import 'package:ibn_sina_flutter/features/product_details/presentation/page/product_details_screen.dart';
 import 'package:ibn_sina_flutter/features/products/business_logic/products_cubit.dart';
@@ -59,7 +62,9 @@ class AppRouter {
       case AppRoutes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (_) => getIt<LoginCubit>(),
+            create: (_) => getIt<LoginCubit>(
+              param1: settings.arguments as IUserLoggedInState,
+            ),
             child: LoginScreen(),
           ),
         );
@@ -89,6 +94,13 @@ class AppRouter {
               param1: settings.arguments as ISuccessAble,
             ),
             child: SubmitOrderScreen(),
+          ),
+        );
+      case AppRoutes.orderHistory:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<OrdersHistoryCubit>(),
+            child: OrderHistoryScreen(),
           ),
         );
       default:

@@ -4,7 +4,27 @@ import 'package:data/network/decode_able.dart';
 import 'package:domain/features/order/entity/order_entity.dart';
 import 'package:xml/xml.dart';
 
-class OrderModel implements DecodeAble<OrderModel?, String> {
+class OrdersHistoryModel implements DecodeAble<OrdersHistoryModel, String> {
+  List<OrderHistoryModel>? orders = [];
+
+  OrdersHistoryModel({
+    this.orders,
+  });
+
+  @override
+  OrdersHistoryModel fromJson(String json) {
+    final document = XmlDocument.parse(json);
+    var textContent = document.root.innerText;
+    List<dynamic> jsonData = jsonDecode(textContent);
+    var data = jsonData.map((e) => OrderHistoryModel.fromJson(e)).toList();
+    return OrdersHistoryModel(
+      orders: data,
+    );
+  }
+}
+
+class OrderHistoryModel
+    implements DecodeAble<OrderHistoryModel?, Map<String, dynamic>> {
   final int? orderId;
   final int? userId;
   final String? orderTime;
@@ -22,7 +42,7 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
   final String? orderGovernorate;
   final List<OrderProductModel>? orderProductList;
 
-  OrderModel({
+  OrderHistoryModel({
     this.orderId,
     this.userId,
     this.orderTime,
@@ -41,8 +61,8 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
     this.orderProductList,
   });
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) {
-    return OrderModel(
+  factory OrderHistoryModel.fromJson(Map<String, dynamic> json) {
+    return OrderHistoryModel(
       orderId: json["OrderId"],
       userId: json["UserId"],
       orderTime: json["OrderTime"],
@@ -86,14 +106,10 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
   }
 
   @override
-  OrderModel? fromJson(String json) {
-    final document = XmlDocument.parse(json);
-    String jsonString = document.rootElement.innerText;
-    dynamic jsonData = jsonDecode(jsonString);
-    return OrderModel.fromJson(
-        jsonData
-    );
+  OrderHistoryModel? fromJson(Map<String, dynamic> json) {
+    return OrderHistoryModel.fromJson(json);
   }
+
   OrderEntity toEntity() {
     return OrderEntity(
       orderId: orderId ?? 0,
@@ -111,7 +127,8 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
       userAvailableTime: userAvailableTime ?? "",
       orderAmount: double.tryParse(orderAmount ?? "0") ?? 0.0,
       orderGovernorate: orderGovernorate ?? "",
-      orderProductList: orderProductList?.map((e) => e.toEntity()).toList() ?? [],
+      orderProductList:
+          orderProductList?.map((e) => e.toEntity()).toList() ?? [],
     );
   }
 }
@@ -141,6 +158,7 @@ class OrderProductModel {
       "Price": price,
     };
   }
+
   OrderProductEntity toEntity() {
     return OrderProductEntity(
       orderId: orderId ?? 0,

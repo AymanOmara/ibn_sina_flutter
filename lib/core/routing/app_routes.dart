@@ -22,9 +22,10 @@ class AppRoutes {
    /// ********* products **********
    static const products = "products";
    static const productDetails = "productDetails";
-   static const cart = "cart";
-   static const order = "order";
 
-
+  /// ********* order **********
+  static const cart = "cart";
+  static const order = "order";
+  static const orderHistory = "orderHistory";
 
 }

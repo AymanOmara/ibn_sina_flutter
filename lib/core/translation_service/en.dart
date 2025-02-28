@@ -90,5 +90,14 @@ Map<String, String> en = {
   "start_time": "Start Time",
   "order_created_successfully": "Order created successfully",
   "select_governorate":"Select Governorate",
-  "cart":"Cart"
+  "cart":"Cart",
+  'order_id': 'Order ID',
+  'payment_method': 'Payment Method',
+  'order_time': 'Order Time',
+  'products': 'Products',
+  'amount': 'Amount',
+  'pending': 'Pending',
+  'completed': 'Completed',
+  'cancelled': 'Cancelled',
+  "my_orders":"My Orders"
 };

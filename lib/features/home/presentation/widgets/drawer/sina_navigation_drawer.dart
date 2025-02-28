@@ -4,11 +4,17 @@ import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
+import 'package:ibn_sina_flutter/features/home/display/i_user_logged_in_state.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_drawer_button.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_drawer_cubit.dart';
 
 class SinaNavigationDrawer extends StatelessWidget {
-  const SinaNavigationDrawer({super.key});
+  const SinaNavigationDrawer({
+    super.key,
+    required this.userLoggedInState,
+  });
+
+  final IUserLoggedInState userLoggedInState;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,7 @@ class SinaNavigationDrawer extends StatelessWidget {
           } else if (state is SinaDrawerDeleteAccountResult) {
             state.result.fold(onSuccess: (data) {
               if (data) {
+                userLoggedInState.onLogout();
                 Get.snackbar(
                   "success".tr,
                   "account_deleted_successfully".tr,
@@ -78,21 +85,32 @@ class SinaNavigationDrawer extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        SinaDrawerButton(title: "contact_us".tr, onTap: (){
-          Get.toNamed(AppRoutes.contactUs);
-        }),
-        SinaDrawerButton(title: "notifications".tr, onTap: (){
-          Get.toNamed(AppRoutes.notifications);
-        }),
-        SinaDrawerButton(title: "logout".tr, onTap: (){
-          cubit.logout();
-        }),
-
-        SinaDrawerButton(title: "delete_account".tr, onTap: (){
-          cubit.deleteAccount();
-        }),
-
-
+        SinaDrawerButton(
+            title: "my_orders".tr,
+            onTap: () {
+              Get.toNamed(AppRoutes.orderHistory);
+            }),
+        SinaDrawerButton(
+            title: "contact_us".tr,
+            onTap: () {
+              Get.toNamed(AppRoutes.contactUs);
+            }),
+        SinaDrawerButton(
+            title: "notifications".tr,
+            onTap: () {
+              Get.toNamed(AppRoutes.notifications);
+            }),
+        SinaDrawerButton(
+            title: "logout".tr,
+            onTap: () {
+              cubit.logout();
+              userLoggedInState.onLogout();
+            }),
+        SinaDrawerButton(
+            title: "delete_account".tr,
+            onTap: () {
+              cubit.deleteAccount();
+            }),
         cubit.loading
             ? CircularProgressIndicator(
                 color: Colors.white,
@@ -108,15 +126,24 @@ class SinaNavigationDrawer extends StatelessWidget {
         SizedBox(
           height: Get.mediaQuery.padding.top + 20,
         ),
-        SinaDrawerButton(title: "login".tr, onTap: (){
-          Get.toNamed(AppRoutes.login);
-        }),
-        SinaDrawerButton(title: "create_account".tr, onTap: (){
-          Get.toNamed(AppRoutes.registration);
-        }),
-        SinaDrawerButton(title: "contact_us".tr, onTap: (){
-          Get.toNamed(AppRoutes.contactUs);
-        }),
+        SinaDrawerButton(
+            title: "login".tr,
+            onTap: () {
+              Get.toNamed(
+                AppRoutes.login,
+                arguments: userLoggedInState,
+              );
+            }),
+        SinaDrawerButton(
+            title: "create_account".tr,
+            onTap: () {
+              Get.toNamed(AppRoutes.registration);
+            }),
+        SinaDrawerButton(
+            title: "contact_us".tr,
+            onTap: () {
+              Get.toNamed(AppRoutes.contactUs);
+            }),
       ],
     );
   }

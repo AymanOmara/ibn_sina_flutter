@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
+import 'package:ibn_sina_flutter/features/home/display/i_user_logged_in_state.dart';
 import 'package:ibn_sina_flutter/features/home/display/product_type.dart';
 import 'package:meta/meta.dart';
 
 part 'home_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
+class HomeCubit extends Cubit<HomeState> implements IUserLoggedInState {
   HomeCubit(this._bannerUseCase) : super(HomeInitial()) {
     fetchBanners();
   }
@@ -81,5 +82,15 @@ class HomeCubit extends Cubit<HomeState> {
         emit(HomeLoading());
       });
     });
+  }
+
+  @override
+  void onLogin() {
+    emit(HomeInitial());
+  }
+
+  @override
+  void onLogout() {
+    emit(HomeInitial());
   }
 }

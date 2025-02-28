@@ -90,5 +90,14 @@ Map<String, String> ar = {
   "start_time": "وقت البدء",
   "order_created_successfully": "تم إنشاء الطلب بنجاح",
   "select_governorate": "حدد المحافظة",
-  "cart":"عربة التسوق"
+  "cart":"عربة التسوق",
+  'order_id': 'رقم الطلب',
+  'payment_method': 'طريقة الدفع',
+  'order_time': 'وقت الطلب',
+  'products': 'المنتجات',
+  'amount': 'الكمية',
+  'pending': 'معلق',
+  'completed': 'مكتمل',
+  'cancelled': 'ملغي',
+  "my_orders":"طلباتي"
 };

@@ -24,7 +24,9 @@ class HomeScreen extends StatelessWidget {
         HomeCubit cubit = BlocProvider.of(context);
         return Scaffold(
           key: _scaffoldKey,
-          drawer: SinaNavigationDrawer(),
+          drawer: SinaNavigationDrawer(
+            userLoggedInState: cubit,
+          ),
           body: Column(
             children: [
               HomeTopBar(

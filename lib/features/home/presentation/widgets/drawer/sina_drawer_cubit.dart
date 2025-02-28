@@ -17,11 +17,10 @@ class SinaDrawerCubit extends Cubit<SinaDrawerState> {
     this._logoutUseCase,
     this._deleteAccountUseCase,
   ) : super(SinaDrawerInitial()) {
-    isUserLoggedIn = getIt<AppCubit>().isUserLoggedIn();
     user = _fetchUserDetailsUseCase();
   }
 
-  bool isUserLoggedIn = false;
+  bool get isUserLoggedIn => getIt<AppCubit>().isUserLoggedIn();
   final FetchUserDetailsUseCase _fetchUserDetailsUseCase;
   final LogoutUseCase _logoutUseCase;
   final DeleteAccountUseCase _deleteAccountUseCase;
@@ -29,7 +28,6 @@ class SinaDrawerCubit extends Cubit<SinaDrawerState> {
   bool loading = false;
 
   void logout() {
-    isUserLoggedIn = false;
     _logoutUseCase();
     emit(SinaDrawerLogoutUser());
   }
@@ -42,7 +40,6 @@ class SinaDrawerCubit extends Cubit<SinaDrawerState> {
       value.fold(
           onSuccess: (data) {
             if (data) {
-              isUserLoggedIn = false;
               _logoutUseCase();
             }
           },

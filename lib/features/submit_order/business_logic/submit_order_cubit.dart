@@ -52,6 +52,7 @@ class SubmitOrderCubit extends Cubit<SubmitOrderState> {
     orderEntity.startTime = startTime;
     orderEntity.endTime = endTime;
     orderEntity.paymentMethod = selectedPaymentIndex.toString();
+    orderEntity.totalPrice = totalAmount();
     emit(SubmitOrderInitial());
     _createOrderUseCase(orderEntity).then((value) {
       loadingState = Idle();
