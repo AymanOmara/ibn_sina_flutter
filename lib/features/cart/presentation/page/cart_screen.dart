@@ -6,7 +6,6 @@ import 'package:ibn_sina_flutter/core/ui/sina_top_navigation_bar.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
 import 'package:ibn_sina_flutter/features/cart/presentation/widgets/cart_widget.dart';
-import 'package:ibn_sina_flutter/features/submit_order/presentation/page/submit_order_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -70,16 +69,20 @@ class CartScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
+                        if (cubit.products.isEmpty) return;
                         Navigator.pushNamed(
                           context,
                           AppRoutes.order,
+                          arguments: cubit
                         );
                       },
                       child: Container(
                         alignment: Alignment.center,
                         width: Get.width / 2 - 10,
                         constraints: BoxConstraints(minHeight: 46),
-                        decoration: BoxDecoration(color: orangeColor),
+                        decoration: BoxDecoration(
+                          color: orangeColor.withOpacity(cubit.products.isEmpty ?0.3 :1),
+                        ),
                         child: Text(
                           "order_now".tr,
                           style: TextStyle(

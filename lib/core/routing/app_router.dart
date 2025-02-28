@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
+import 'package:ibn_sina_flutter/core/display/i_success_able.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/presentation/page/login_screen.dart';
@@ -84,7 +85,9 @@ class AppRouter {
         return DialogRoute(
           context: Get.context!,
           builder: (_) => BlocProvider(
-            create: (context) => getIt<SubmitOrderCubit>(),
+            create: (context) => getIt<SubmitOrderCubit>(
+              param1: settings.arguments as ISuccessAble,
+            ),
             child: SubmitOrderScreen(),
           ),
         );

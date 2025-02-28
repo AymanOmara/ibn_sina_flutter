@@ -1,5 +1,6 @@
 import 'package:domain/features/products/entity/product_entity.dart';
 import 'package:get_it/get_it.dart';
+import 'package:ibn_sina_flutter/core/display/i_success_able.dart';
 import 'package:ibn_sina_flutter/features/app/business_logic/app_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/registration/business_logic/registration_cubit.dart';
@@ -33,5 +34,5 @@ void registerDependencies(GetIt diInjector) async {
   getIt.registerFactoryParam((p1, _) => ProductsCubit(p1 as HomeCategoryDisplay, diInjector()));
   getIt.registerFactoryParam((p1, _) => ProductDetailsCubit(p1 as ProductEntity));
   getIt.registerSingleton(CartCubit(diInjector(), diInjector(), diInjector(), diInjector()));
-  getIt.registerFactory(() => SubmitOrderCubit(diInjector(),diInjector()));
+  getIt.registerFactoryParam((p1, _) => SubmitOrderCubit(diInjector(),diInjector(),p1 as ISuccessAble));
 }

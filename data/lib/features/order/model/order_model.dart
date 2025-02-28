@@ -93,9 +93,7 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
     String jsonString = document.rootElement.innerText;
     dynamic jsonData = jsonDecode(jsonString);
     return OrderModel.fromJson(
-      jsonDecode(
-        jsonData,
-      ),
+        jsonData
     );
   }
   OrderEntity toEntity() {

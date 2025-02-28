@@ -88,5 +88,7 @@ Map<String, String> ar = {
   "payment_visa": "فيزا",
   "end_time": "وقت الانتهاء",
   "start_time": "وقت البدء",
-  "order_created_successfully": "تم إنشاء الطلب بنجاح"
+  "order_created_successfully": "تم إنشاء الطلب بنجاح",
+  "select_governorate": "حدد المحافظة",
+  "cart":"عربة التسوق"
 };

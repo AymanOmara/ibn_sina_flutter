@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/helper/government_names.dart';
+
 class GovernorateDropDown extends StatelessWidget {
   final Function(String) onSelected;
 
-  const GovernorateDropDown({super.key, required this.onSelected});
+  const GovernorateDropDown({
+    super.key,
+    required this.onSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
-        labelText: 'Select Governorate',
+        labelText: 'select_governorate'.tr,
         border: OutlineInputBorder(),
       ),
       items: Governorate.values.map((Governorate gov) {
         return DropdownMenuItem<String>(
-          value: gov.key,
-          child: Text(gov.key),
+          value: gov.key.tr,
+          child: Text(
+            gov.key.tr,
+          ),
         );
       }).toList(),
       onChanged: (value) {

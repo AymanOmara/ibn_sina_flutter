@@ -88,5 +88,7 @@ Map<String, String> en = {
   "payment_visa": "Visa",
   "end_time": "End Time",
   "start_time": "Start Time",
-  "order_created_successfully": "Order created successfully"
+  "order_created_successfully": "Order created successfully",
+  "select_governorate":"Select Governorate",
+  "cart":"Cart"
 };
