@@ -139,8 +139,11 @@ class SubmitOrderScreen extends StatelessWidget {
                       ],
                     ),
                     SinaTextField(
+                      keyboardType: TextInputType.phone,
                       title: "phone_number".tr,
-                      onChanged: (phone) {},
+                      onChanged: (phone) {
+                        cubit.orderEntity.phoneNumber = phone;
+                      },
                       validator: Validator.validatePhone,
                     ),
                     Text(
