@@ -1,9 +1,15 @@
+import java.util.Properties
+import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
 }
-
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
 android {
     namespace = "com.IbnSina.Dent.ibn_sina_flutter"
     compileSdk = flutter.compileSdkVersion
@@ -20,7 +26,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.IbnSina.Dent.ibn_sina_flutter"
+        applicationId = "com.IbnSina.Den"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -30,10 +36,10 @@ android {
     }
     signingConfigs {
         create("release") {
-            storeFile = file("/Users/aymanomara/Library/Android/sdk/my-release-key.keystore")
-            storePassword = System.getenv("KEYSTORE_PASSWORD")
-            keyAlias = System.getenv("KEY_ALIAS")
-            keyPassword = System.getenv("KEY_PASSWORD")
+            storeFile = keystoreProperties["storeFile"]?.let { file(it) } ?: file("/Users/aymanomara/sina-flutter-upload-keystore.jks")
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storePassword = keystoreProperties["storePassword"] as String
         }
     }
 
