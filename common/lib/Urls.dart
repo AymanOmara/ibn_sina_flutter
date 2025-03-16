@@ -1,17 +1,16 @@
 class Urls {
   Urls._();
 
-  static const baseUrl =
-      "http://ibnsinadental-001-site1.ftempurl.com/DentalShopWebService.asmx";
-  static const banner = "/GetPanner";
+  static const baseUrl = "http://localhost:5029/api/";
+  static const banner = "Panner/GetPanner";
 
-  static const products = "/GetProudect";
+  static const products = "Product/GetProduct/";
 
-  static const login = "/LogIn";
+  static const login = "User/Login";
   static const deleteAccount = "/DeleteAccount?userid=";
-  static const createAccount = "/CreateAccount";
-  
+  static const createAccount = "User/CreateAccount";
+
   static const notifications = "/GetNotifiction";
-  static const createOrder = "/MakeOrder";
+  static const createOrder = "Order/MakeOrder";
   static const myOrders = "/GetOrders";
 }

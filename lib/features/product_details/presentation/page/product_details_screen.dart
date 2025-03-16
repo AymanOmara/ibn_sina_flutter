@@ -85,7 +85,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             width: 20,
                           ),
                           Text(
-                            int.parse(cubit.product.amount) > 0
+                            cubit.product.amount > 0
                                 ? "available".tr
                                 : "un_available".tr,
                             style: TextStyle(
@@ -143,7 +143,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            cubit.product.price,
+                            cubit.product.price.toString(),
                             style: TextStyle(
                               color: blue,
                               fontWeight: FontWeight.bold,

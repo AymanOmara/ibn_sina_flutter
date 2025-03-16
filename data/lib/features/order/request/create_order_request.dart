@@ -6,36 +6,35 @@ import 'package:domain/features/order/entity/create_order_entity.dart';
 
 class CreateOrderRequest extends IRemoteTarget {
   final CreateOrderEntity entity;
-  final String userId;
+  final int userId;
 
   CreateOrderRequest({
     required this.entity,
     required this.userId,
   }) {
-    body = "Content=${Uri.encodeComponent(jsonEncode({
-          "UserId": int.tryParse(userId) ?? 0,
-          "OrderLocation": entity.address,
-          "DeliveryFees": "69",
-          "OrderAcceptTime": "2025-02-27 20:18:42",
-          "OrderCompleteTime": "2025-02-27 20:18:42",
-          "OrderTime": "2025-02-27 20:18:42",
-          "OrderExcuteTime": "2025-02-27 20:18:42",
-          "OrderStatus": "Pendding",
-          "UserAvilableTime": "${entity.startTime} - ${entity.endTime}",
-          "OrderPhone": entity.phoneNumber,
-          "PaymentMethod": "Cash",
-          "OrderGovernorate": entity.governorate,
-          "OrderPrice": entity.totalPrice.toString(),
-          "OrderAmount": entity.products.length.toString(),
-          "OrderProuductList": entity.products
-              .map((product) => {
-                    "OrderId": 0,
-                    "ProuductId": product.product.productId,
-                    "Price": product.product.price,
-                    "Amount": product.count,
-                  })
-              .toList(),
-        }))}";
+    body = {
+      "orderId": 0,
+      "userId": userId,
+      "orderStatus": "string",
+      "orderAcceptTime": "2025-03-16T21:32:51.715Z",
+      "orderPrice":  entity.totalPrice,
+      "orderLocation": entity.address,
+      "orderPhone":entity.phoneNumber,
+      "paymentMethod": "string",
+      "deliveryFees": 0,
+      "orderExcuteTime": "2025-03-16T21:32:51.715Z",
+      "orderCompleteTime": "2025-03-16T21:32:51.715Z",
+      "userAvilableTime": "string",
+      "orderAmount": entity.products.length,
+      "orderGovernorate": entity.governorate,
+      "orderProducts": entity.products
+          .map((e) => {
+                "prouductId": e.product.productId,
+                "price": e.product.price,
+                "amount": e.count
+              })
+          .toList(),
+    };
   }
 
   @override
@@ -43,7 +42,4 @@ class CreateOrderRequest extends IRemoteTarget {
 
   @override
   String? get path => Urls.createOrder;
-
-  @override
-  get headers => {"Content-Type": "application/x-www-form-urlencoded"};
 }

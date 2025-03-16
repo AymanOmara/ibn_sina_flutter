@@ -4,8 +4,8 @@ import 'package:data/network/decode_able.dart';
 import 'package:domain/features/authentication/entities/user_entity.dart';
 import 'package:xml/xml.dart';
 
-class UserModel implements DecodeAble<UserModel?, String> {
-  String? userId;
+class UserModel implements DecodeAble<UserModel?, Map<String, dynamic>> {
+  int? userId;
   String? userName;
   String? userEmail;
   String? userPassword;
@@ -22,29 +22,24 @@ class UserModel implements DecodeAble<UserModel?, String> {
   });
 
   @override
-  UserModel? fromJson(String json) {
-    final document = XmlDocument.parse(json);
-
-    String jsonString = document.rootElement.innerText;
-
-    dynamic jsonData = jsonDecode(jsonString);
-    return UserModel.fromJson(jsonData);
+  UserModel? fromJson(Map<String, dynamic> json) {
+    return UserModel.fromJson(json);
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      userId: json['UserId'] ?? '',
-      userName: json['UserName'] ?? '',
-      userEmail: json['UserEmail'] ?? '',
-      userPassword: json['UserPassword'] ?? '',
-      userPhone: json['UserPhone'] ?? '',
-      userPhoto: json['UserPhoto'] ?? '',
+      userId: json['userid'] ?? '',
+      userName: json['username'] ?? '',
+      userEmail: json['useremail'] ?? '',
+      userPassword: json['userpassword'] ?? '',
+      userPhone: json['userphone'] ?? '',
+      userPhoto: json['userphoto'] ?? '',
     );
   }
 
   UserEntity toEntity() {
     return UserEntity(
-      userId: userId ?? "",
+      userId: userId ?? 0,
       userName: userName ?? "",
       userEmail: userEmail ?? "",
       userPassword: userPassword ?? "",

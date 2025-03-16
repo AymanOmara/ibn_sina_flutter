@@ -2,12 +2,12 @@ import 'package:common/Urls.dart';
 import 'package:data/network/remote_target.dart';
 
 class GetMyNotificationRequest extends IRemoteTarget {
-  final String userID;
+  final int userID;
 
   GetMyNotificationRequest({
     required this.userID,
   }) {
-    body = "Content=${Uri.encodeComponent(userID)}";
+    body = "Content=${Uri.encodeComponent(userID.toString())}";
   }
 
   @override

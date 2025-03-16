@@ -27,7 +27,7 @@ class OrderRepository implements IOrderRepository {
     var result = await _service.fetchData<OrderModel>(
       CreateOrderRequest(
         entity: order,
-        userId: _userLocal.getUser()?.userId ?? "",
+        userId: _userLocal.getUser()?.userId ?? 0,
       ),
       data: OrderModel(),
     );
@@ -41,7 +41,7 @@ class OrderRepository implements IOrderRepository {
   @override
   Future<Result<List<OrderEntity>, NetworkException>> fetchOrders() async {
     var result = await _service.fetchData<OrdersHistoryModel>(
-      OrdersHistoryRequest(userID: _userLocal.getUser()?.userId ?? ""),
+      OrdersHistoryRequest(userID: _userLocal.getUser()?.userId ?? 0),
       data: OrdersHistoryModel(),
     );
     return result.fold(onSuccess: (data) {

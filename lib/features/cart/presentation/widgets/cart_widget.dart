@@ -52,7 +52,7 @@ class CartWidget extends StatelessWidget {
             children: [
               Text("price".tr),
               Text(
-                cart.product.price,
+                cart.product.price.toString(),
                 style: TextStyle(
                   color: orangeColor,
                   fontSize: 16,

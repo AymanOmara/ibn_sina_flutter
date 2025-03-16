@@ -4,7 +4,7 @@ import 'package:data/network/decode_able.dart';
 import 'package:domain/features/order/entity/order_entity.dart';
 import 'package:xml/xml.dart';
 
-class OrderModel implements DecodeAble<OrderModel?, String> {
+class OrderModel implements DecodeAble<OrderModel?, Map<String, dynamic>> {
   final int? orderId;
   final int? userId;
   final String? orderTime;
@@ -18,7 +18,7 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
   final String? orderExecuteTime;
   final String? orderCompleteTime;
   final String? userAvailableTime;
-  final String? orderAmount;
+  final int? orderAmount;
   final String? orderGovernorate;
   final List<OrderProductModel>? orderProductList;
 
@@ -43,22 +43,22 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
-      orderId: json["OrderId"],
-      userId: json["UserId"],
-      orderTime: json["OrderTime"],
-      orderStatus: json["OrderStatus"],
-      orderAcceptTime: json["OrderAcceptTime"],
-      orderPrice: json["OrderPrice"],
-      orderLocation: json["OrderLocation"],
-      orderPhone: json["OrderPhone"],
-      paymentMethod: json["PaymentMethod"],
-      deliveryFees: json["DeliveryFees"],
-      orderExecuteTime: json["OrderExcuteTime"],
-      orderCompleteTime: json["OrderCompleteTime"],
-      userAvailableTime: json["UserAvilableTime"],
-      orderAmount: json["OrderAmount"],
-      orderGovernorate: json["OrderGovernorate"],
-      orderProductList: (json["OrderProuductList"] as List?)
+      orderId: json["orderid"],
+      userId: json["userid"],
+      orderTime: json["ordertime"],
+      orderStatus: json["orderstatus"],
+      orderAcceptTime: json["orderaccepttime"],
+      orderPrice: json["orderprice"],
+      orderLocation: json["orderlocation"],
+      orderPhone: json["orderphone"],
+      paymentMethod: json["paymentmethod"],
+      deliveryFees: json["deliveryfees"],
+      orderExecuteTime: json["orderexcutetime"],
+      orderCompleteTime: json["ordercompletetime"],
+      userAvailableTime: json["useravilabletime"],
+      orderAmount: json["orderamount"],
+      orderGovernorate: json["ordergovernorate"],
+      orderProductList: (json["orderProductList"] as List?)
           ?.map((e) => OrderProductModel.fromJson(e))
           .toList(),
     );
@@ -66,34 +66,30 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
 
   Map<String, dynamic> toJson() {
     return {
-      "OrderId": orderId,
-      "UserId": userId,
-      "OrderTime": orderTime,
-      "OrderStatus": orderStatus,
-      "OrderAcceptTime": orderAcceptTime,
-      "OrderPrice": orderPrice,
-      "OrderLocation": orderLocation,
-      "OrderPhone": orderPhone,
-      "PaymentMethod": paymentMethod,
-      "DeliveryFees": deliveryFees,
-      "OrderExcuteTime": orderExecuteTime,
-      "OrderCompleteTime": orderCompleteTime,
-      "UserAvilableTime": userAvailableTime,
-      "OrderAmount": orderAmount,
-      "OrderGovernorate": orderGovernorate,
-      "OrderProuductList": orderProductList?.map((e) => e.toJson()).toList(),
+      "orderid": orderId,
+      "userid": userId,
+      "ordertime": orderTime,
+      "orderstatus": orderStatus,
+      "orderaccepttime": orderAcceptTime,
+      "orderprice": orderPrice,
+      "orderlocation": orderLocation,
+      "orderphone": orderPhone,
+      "paymentmethod": paymentMethod,
+      "deliveryfees": deliveryFees,
+      "orderexcutetime": orderExecuteTime,
+      "ordercompletetime": orderCompleteTime,
+      "useravilabletime": userAvailableTime,
+      "orderamount": orderAmount,
+      "ordergovernorate": orderGovernorate,
+      "orderProductList": orderProductList?.map((e) => e.toJson()).toList(),
     };
   }
 
   @override
-  OrderModel? fromJson(String json) {
-    final document = XmlDocument.parse(json);
-    String jsonString = document.rootElement.innerText;
-    dynamic jsonData = jsonDecode(jsonString);
-    return OrderModel.fromJson(
-        jsonData
-    );
+  OrderModel? fromJson(Map<String, dynamic> json) {
+    return OrderModel.fromJson(json);
   }
+
   OrderEntity toEntity() {
     return OrderEntity(
       orderId: orderId ?? 0,
@@ -109,12 +105,14 @@ class OrderModel implements DecodeAble<OrderModel?, String> {
       orderExecuteTime: orderExecuteTime ?? "",
       orderCompleteTime: orderCompleteTime ?? "",
       userAvailableTime: userAvailableTime ?? "",
-      orderAmount: double.tryParse(orderAmount ?? "0") ?? 0.0,
+      orderAmount: orderAmount ?? 0,
       orderGovernorate: orderGovernorate ?? "",
-      orderProductList: orderProductList?.map((e) => e.toEntity()).toList() ?? [],
+      orderProductList:
+      orderProductList?.map((e) => e.toEntity()).toList() ?? [],
     );
   }
 }
+
 
 class OrderProductModel {
   final int? orderId;

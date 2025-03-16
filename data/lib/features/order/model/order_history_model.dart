@@ -4,7 +4,7 @@ import 'package:data/network/decode_able.dart';
 import 'package:domain/features/order/entity/order_entity.dart';
 import 'package:xml/xml.dart';
 
-class OrdersHistoryModel implements DecodeAble<OrdersHistoryModel, String> {
+class OrdersHistoryModel implements DecodeAble<OrdersHistoryModel, List> {
   List<OrderHistoryModel>? orders = [];
 
   OrdersHistoryModel({
@@ -12,11 +12,8 @@ class OrdersHistoryModel implements DecodeAble<OrdersHistoryModel, String> {
   });
 
   @override
-  OrdersHistoryModel fromJson(String json) {
-    final document = XmlDocument.parse(json);
-    var textContent = document.root.innerText;
-    List<dynamic> jsonData = jsonDecode(textContent);
-    var data = jsonData.map((e) => OrderHistoryModel.fromJson(e)).toList();
+  OrdersHistoryModel fromJson(List json) {
+    var data = json.map((e) => OrderHistoryModel.fromJson(e)).toList();
     return OrdersHistoryModel(
       orders: data,
     );
@@ -30,7 +27,7 @@ class OrderHistoryModel
   final String? orderTime;
   final String? orderStatus;
   final String? orderAcceptTime;
-  final String? orderPrice;
+  final double? orderPrice;
   final String? orderLocation;
   final String? orderPhone;
   final String? paymentMethod;
@@ -38,7 +35,7 @@ class OrderHistoryModel
   final String? orderExecuteTime;
   final String? orderCompleteTime;
   final String? userAvailableTime;
-  final String? orderAmount;
+  final int? orderAmount;
   final String? orderGovernorate;
   final List<OrderProductModel>? orderProductList;
 
@@ -63,21 +60,21 @@ class OrderHistoryModel
 
   factory OrderHistoryModel.fromJson(Map<String, dynamic> json) {
     return OrderHistoryModel(
-      orderId: json["OrderId"],
-      userId: json["UserId"],
-      orderTime: json["OrderTime"],
-      orderStatus: json["OrderStatus"],
-      orderAcceptTime: json["OrderAcceptTime"],
-      orderPrice: json["OrderPrice"],
-      orderLocation: json["OrderLocation"],
-      orderPhone: json["OrderPhone"],
-      paymentMethod: json["PaymentMethod"],
-      deliveryFees: json["DeliveryFees"],
-      orderExecuteTime: json["OrderExcuteTime"],
-      orderCompleteTime: json["OrderCompleteTime"],
-      userAvailableTime: json["UserAvilableTime"],
-      orderAmount: json["OrderAmount"],
-      orderGovernorate: json["OrderGovernorate"],
+      orderId: json["orderid"],
+      userId: json["userid"],
+      orderTime: json["ordertime"],
+      orderStatus: json["orderstatus"],
+      orderAcceptTime: json["orderaccepttime"],
+      orderPrice: json["orderprice"],
+      orderLocation: json["orderlocation"],
+      orderPhone: json["orderphone"],
+      paymentMethod: json["paymentmethod"],
+      deliveryFees: json["deliveryfees"],
+      orderExecuteTime: json["orderexcutetime"],
+      orderCompleteTime: json["ordercompletetime"],
+      userAvailableTime: json["useravilabletime"],
+      orderAmount: json["Orderamount"],
+      orderGovernorate: json["ordergovernorate"],
       orderProductList: (json["OrderProuductList"] as List?)
           ?.map((e) => OrderProductModel.fromJson(e))
           .toList(),
@@ -86,21 +83,21 @@ class OrderHistoryModel
 
   Map<String, dynamic> toJson() {
     return {
-      "OrderId": orderId,
-      "UserId": userId,
-      "OrderTime": orderTime,
-      "OrderStatus": orderStatus,
-      "OrderAcceptTime": orderAcceptTime,
-      "OrderPrice": orderPrice,
-      "OrderLocation": orderLocation,
-      "OrderPhone": orderPhone,
-      "PaymentMethod": paymentMethod,
-      "DeliveryFees": deliveryFees,
-      "OrderExcuteTime": orderExecuteTime,
-      "OrderCompleteTime": orderCompleteTime,
-      "UserAvilableTime": userAvailableTime,
-      "OrderAmount": orderAmount,
-      "OrderGovernorate": orderGovernorate,
+      "orderid": orderId,
+      "userid": userId,
+      "ordertime": orderTime,
+      "orderstatus": orderStatus,
+      "orderaccepttime": orderAcceptTime,
+      "orderprice": orderPrice,
+      "orderlocation": orderLocation,
+      "orderphone": orderPhone,
+      "paymentmethod": paymentMethod,
+      "deliveryfees": deliveryFees,
+      "orderexcutetime": orderExecuteTime,
+      "ordercompletetime": orderCompleteTime,
+      "useravilabletime": userAvailableTime,
+      "Orderamount": orderAmount,
+      "ordergovernorate": orderGovernorate,
       "OrderProuductList": orderProductList?.map((e) => e.toJson()).toList(),
     };
   }
@@ -117,7 +114,7 @@ class OrderHistoryModel
       orderTime: orderTime ?? "",
       orderStatus: orderStatus ?? "",
       orderAcceptTime: orderAcceptTime ?? "",
-      orderPrice: double.tryParse(orderPrice ?? "0") ?? 0.0,
+      orderPrice: orderPrice ?? 0,
       orderLocation: orderLocation ?? "",
       orderPhone: orderPhone ?? "",
       paymentMethod: paymentMethod ?? "",
@@ -125,7 +122,7 @@ class OrderHistoryModel
       orderExecuteTime: orderExecuteTime ?? "",
       orderCompleteTime: orderCompleteTime ?? "",
       userAvailableTime: userAvailableTime ?? "",
-      orderAmount: double.tryParse(orderAmount ?? "0") ?? 0.0,
+      orderAmount: orderAmount ?? 0,
       orderGovernorate: orderGovernorate ?? "",
       orderProductList:
           orderProductList?.map((e) => e.toEntity()).toList() ?? [],

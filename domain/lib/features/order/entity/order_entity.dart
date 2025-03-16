@@ -12,7 +12,7 @@ class OrderEntity {
   final String orderExecuteTime;
   final String orderCompleteTime;
   final String userAvailableTime;
-  final double orderAmount;
+  final int orderAmount;
   final String orderGovernorate;
   final List<OrderProductEntity> orderProductList;
 

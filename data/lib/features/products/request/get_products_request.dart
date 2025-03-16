@@ -6,17 +6,10 @@ class GetProductsRequest extends IRemoteTarget {
   final String product;
 
   GetProductsRequest({required this.product}) {
-    path = Urls.products;
-    body = "Content=${Uri.encodeComponent(jsonEncode({
-          "Type": product,
-          "SearchText": "",
-          "AlphaBit": null,
-        }))}";
+    path = Urls.products+product;
   }
 
   @override
-  HttpMethod get method => HttpMethod.post;
+  HttpMethod get method => HttpMethod.get;
 
-  @override
-  get headers => {"Content-Type": "application/x-www-form-urlencoded"};
 }

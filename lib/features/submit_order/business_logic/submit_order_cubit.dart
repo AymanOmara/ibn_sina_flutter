@@ -26,7 +26,7 @@ class SubmitOrderCubit extends Cubit<SubmitOrderState> {
   double totalAmount() {
     if (_cartProductUseCase().isEmpty) return 0;
     return _cartProductUseCase()
-        .map((e) => (double.tryParse(e.product.price) ?? 0) * e.count)
+        .map((e) => (e.product.price ?? 0) * e.count)
         .toList()
         .reduce((value, element) => value + element);
   }

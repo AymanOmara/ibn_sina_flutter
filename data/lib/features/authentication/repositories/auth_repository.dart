@@ -44,7 +44,7 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<Result<bool, NetworkException>> deleteAccount() async {
     var result = await _service.fetchData<DeleteAccountModel>(
-        DeleteAccountRequest(userId: _userLocal.getUser()?.userId ?? ""),
+        DeleteAccountRequest(userId: _userLocal.getUser()?.userId ?? 0),
         data: DeleteAccountModel());
     return result.fold(
         onSuccess: (data) {

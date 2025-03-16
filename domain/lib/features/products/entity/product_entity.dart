@@ -3,8 +3,8 @@ class ProductEntity {
   final String productName;
   final String productDescription;
   final String madeIn;
-  final String price;
-  final String amount;
+  final double price;
+  final int amount;
   final String exDate;
   final String others;
   final String firstYear;
@@ -15,7 +15,7 @@ class ProductEntity {
   final String teeth;
   final String clothes;
   final String type;
-  final String discount;
+  final double discount;
   final List<String> images;
   final String size;
   final String guarantee;
@@ -45,8 +45,6 @@ class ProductEntity {
     required this.rate,
   });
 
-
-
   Map<String, dynamic> toJson() {
     return {
       "ProductID": productId,
@@ -72,6 +70,4 @@ class ProductEntity {
       "Rate": rate,
     };
   }
-
-
 }

@@ -21,7 +21,7 @@ class NotificationsRepository implements INotificationsRepository {
       fetchNotifications() async {
     var result = await _iApiService.fetchData<NotificationsModel>(
       GetMyNotificationRequest(
-        userID: _userLocal.getUser()?.userId ?? "",
+        userID: _userLocal.getUser()?.userId ?? 0,
       ),
       data: NotificationsModel(),
     );

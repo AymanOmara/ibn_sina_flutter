@@ -11,13 +11,7 @@ class LoginRequest extends IRemoteTarget {
     required this.email,
     required this.password,
   }) {
-    body = "Content=${Uri.encodeComponent(
-      jsonEncode({
-        "phone": email,
-        "password": password,
-        "UserId":"",
-      }),
-    )}";
+    body = {"identifier": email, "password": password};
   }
 
   @override
@@ -25,6 +19,4 @@ class LoginRequest extends IRemoteTarget {
 
   @override
   String? get path => Urls.login;
-  @override
-  get headers => {"Content-Type": "application/x-www-form-urlencoded"};
 }

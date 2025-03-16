@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:common/Urls.dart';
 import 'package:data/network/remote_target.dart';
+import 'package:dio/dio.dart';
 import 'package:domain/features/authentication/entities/registration_entity.dart';
 
 class RegistrationRequest extends IRemoteTarget {
@@ -10,18 +11,15 @@ class RegistrationRequest extends IRemoteTarget {
   RegistrationRequest({
     required this.data,
   }) {
-    body = "Content=${Uri.encodeComponent(
-      jsonEncode({
-        "userName": data.userName,
-        "password": data.password,
-        "UserPhone": data.phoneNumber,
-        "UserPhoto": data.userPhone,
-        "UserEmail": data.email,
-        "UserId": data.id,
-        "UserName": data.userName,
-        "UserPassword": data.password,
-      }),
-    )}";
+    body = {
+      "userid": 0,
+      "username": data.userName,
+      "useremail": data.email,
+      "userpassword": data.password,
+      "userphone": "01158092582",
+      "userphoto": data.userPhone,
+      "createon": "2025-03-16T20:54:55.145Z"
+    };
   }
 
   @override
@@ -29,7 +27,4 @@ class RegistrationRequest extends IRemoteTarget {
 
   @override
   String? get path => Urls.createAccount;
-
-  @override
-  get headers => {"Content-Type": "application/x-www-form-urlencoded"};
 }

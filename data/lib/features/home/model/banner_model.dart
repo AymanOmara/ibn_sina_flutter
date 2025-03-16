@@ -3,19 +3,14 @@ import 'dart:convert';
 import 'package:data/network/decode_able.dart';
 import 'package:xml/xml.dart';
 
-class BannerModel implements DecodeAble<BannerModel?, String> {
+class BannerModel implements DecodeAble<BannerModel?, List> {
   List<String>? urls = [];
 
   BannerModel({this.urls});
 
   @override
-  BannerModel fromJson(String json) {
-    final document = XmlDocument.parse(json);
-    final String content = document.rootElement.innerText;
-
-    final List<dynamic> jsonList = jsonDecode(content);
-    final List<String> urls = jsonList.cast<String>();
-
+  BannerModel fromJson(List json) {
+    urls = json.map<String>((e) => e["link"]).toList();
     return BannerModel(urls: urls);
   }
 }
