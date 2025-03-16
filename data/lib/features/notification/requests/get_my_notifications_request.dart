@@ -7,15 +7,6 @@ class GetMyNotificationRequest extends IRemoteTarget {
   GetMyNotificationRequest({
     required this.userID,
   }) {
-    body = "Content=${Uri.encodeComponent(userID.toString())}";
+    path = Urls.notifications + userID.toString();
   }
-
-  @override
-  HttpMethod get method => HttpMethod.post;
-
-  @override
-  String? get path => Urls.notifications;
-
-  @override
-  get headers => {"Content-Type": "application/x-www-form-urlencoded"};
 }

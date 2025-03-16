@@ -31,7 +31,7 @@ class OrderHistoryModel
   final String? orderLocation;
   final String? orderPhone;
   final String? paymentMethod;
-  final String? deliveryFees;
+  final double? deliveryFees;
   final String? orderExecuteTime;
   final String? orderCompleteTime;
   final String? userAvailableTime;
@@ -57,7 +57,6 @@ class OrderHistoryModel
     this.orderGovernorate,
     this.orderProductList,
   });
-
   factory OrderHistoryModel.fromJson(Map<String, dynamic> json) {
     return OrderHistoryModel(
       orderId: json["orderid"],
@@ -118,7 +117,7 @@ class OrderHistoryModel
       orderLocation: orderLocation ?? "",
       orderPhone: orderPhone ?? "",
       paymentMethod: paymentMethod ?? "",
-      deliveryFees: double.tryParse(deliveryFees ?? "0") ?? 0.0,
+      deliveryFees: deliveryFees ?? 0.0,
       orderExecuteTime: orderExecuteTime ?? "",
       orderCompleteTime: orderCompleteTime ?? "",
       userAvailableTime: userAvailableTime ?? "",

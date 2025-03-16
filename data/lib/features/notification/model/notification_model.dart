@@ -4,7 +4,7 @@ import 'package:data/network/decode_able.dart';
 import 'package:domain/features/notifications/entity/notification_entity.dart';
 import 'package:xml/xml.dart';
 
-class NotificationsModel implements DecodeAble<NotificationsModel, String> {
+class NotificationsModel implements DecodeAble<NotificationsModel, List> {
   List<NotificationModel>? notifications = [];
 
   NotificationsModel({
@@ -12,11 +12,8 @@ class NotificationsModel implements DecodeAble<NotificationsModel, String> {
   });
 
   @override
-  NotificationsModel fromJson(String json) {
-    final document = XmlDocument.parse(json);
-    var textContent = document.root.innerText;
-    List<dynamic> jsonData = jsonDecode(textContent);
-    notifications = jsonData.map((e) => NotificationModel.fromJson(e)).toList();
+  NotificationsModel fromJson(List json) {
+    notifications = json.map((e) => NotificationModel.fromJson(e)).toList();
     return NotificationsModel(
       notifications: notifications,
     );
@@ -27,10 +24,16 @@ class NotificationModel
     implements DecodeAble<NotificationModel, Map<String, dynamic>> {
   String? time;
   String? content;
+  int? id;
+  String? timeMark;
+  String? isRead;
 
   NotificationModel({
     this.content,
     this.time,
+    this.id,
+    this.timeMark,
+    this.isRead,
   });
 
   @override
@@ -40,8 +43,11 @@ class NotificationModel
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
-      time: "time",
-      content: "lBNotificationText",
+      time: json["notificationtime"],
+      content: json["notificationtext"],
+      id: json["notificationid"],
+      timeMark: json["timemark"],
+      isRead: json["isread"],
     );
   }
 
@@ -49,6 +55,9 @@ class NotificationModel
     return NotificationEntity(
       content: content ?? "",
       time: time ?? "",
+      id: id ?? 0,
+      timeMark: timeMark ?? "",
+      isRead: isRead ?? "",
     );
   }
 }

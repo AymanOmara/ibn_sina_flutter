@@ -10,7 +10,7 @@ class Urls {
   static const deleteAccount = "/DeleteAccount?userid=";
   static const createAccount = "User/CreateAccount";
 
-  static const notifications = "/GetNotifiction";
+  static const notifications = "Notifications/GetNotifications/";
   static const createOrder = "Order/MakeOrder";
-  static const myOrders = "/GetOrders";
+  static const myOrders = "Order/GetOrders/";
 }
