@@ -7,7 +7,16 @@ class GetProductsRequest extends IRemoteTarget {
   final FetchProductsRequest request;
 
   GetProductsRequest({required this.request}) {
-    // path = Urls.products+product;
+    path = "${Urls.products}${request.categoryName}";
+    queryParameters = {
+      "firstYear": request.firstYear ? "T" : "F",
+      "secondYear": request.secondYear ? "T" : "F",
+      "thirdYear": request.thirdYear ? "T" : "F",
+      "forthYear": request.fourthYear ? "T" : "F",
+      "fifthYear": request.fifthYear ? "T" : "F",
+      "Clothes": request.otherEquipment ? "T" : "F",
+      "Teeth": request.otherEquipment ? "T" : "F",
+    };
   }
 
   @override

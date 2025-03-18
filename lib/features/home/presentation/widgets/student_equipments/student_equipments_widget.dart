@@ -107,6 +107,7 @@ class StudentEquipmentsWidget extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
+                      cubit.request.categoryName = cubit.category.productType.type;
                       Navigator.of(context).pushNamed(
                         AppRoutes.products,
                         arguments: ProductListParams(
