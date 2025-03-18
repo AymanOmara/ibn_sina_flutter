@@ -7,7 +7,7 @@ class Urls {
   static const products = "Product/GetProduct/";
 
   static const login = "User/Login";
-  static const deleteAccount = "/DeleteAccount?userid=";
+  static const deleteAccount = "User/DeleteAccount/";
   static const createAccount = "User/CreateAccount";
 
   static const notifications = "Notifications/GetNotifications/";

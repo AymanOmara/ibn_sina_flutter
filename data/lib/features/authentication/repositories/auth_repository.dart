@@ -48,6 +48,7 @@ class AuthRepository implements IAuthRepository {
         data: DeleteAccountModel());
     return result.fold(
         onSuccess: (data) {
+
           return Success(data?.success ?? false);
         },
         onFailure: (e) => Failure(e));

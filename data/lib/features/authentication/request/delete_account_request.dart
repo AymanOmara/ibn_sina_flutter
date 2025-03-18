@@ -7,4 +7,7 @@ class DeleteAccountRequest extends IRemoteTarget {
   DeleteAccountRequest({required this.userId}) {
     path = Urls.deleteAccount + userId.toString();
   }
+
+  @override
+  HttpMethod get method => HttpMethod.delete;
 }

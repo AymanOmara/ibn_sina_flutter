@@ -1,3 +1,4 @@
+import 'package:domain/features/products/entity/fetch_product_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
@@ -10,6 +11,7 @@ import 'package:ibn_sina_flutter/features/home/presentation/widgets/drawer/sina_
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/home_category_widget.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/home_slider/home_slider.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/widgets/home_top_bar.dart';
+import 'package:ibn_sina_flutter/features/products/display/product_list_params.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -53,25 +55,41 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Wrap(
-                spacing: 10,
-                runSpacing: 20,
-                children: cubit.categories
-                    .map(
-                      (category) => InkWell(
-                        onTap: () {
-                          if (category.productType !=
-                              ProductType.studentsEquipments) {
-                            Navigator.of(context).pushNamed(AppRoutes.products,
-                                arguments: category);
-                          } else {}
-                        },
-                        child: HomeCategoryWidget(
-                          category: category,
-                        ),
-                      ),
-                    )
-                    .toList(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Wrap(
+                    spacing: 10,
+                    runSpacing: 20,
+                    children: cubit.categories
+                        .map(
+                          (category) => InkWell(
+                            onTap: () {
+                              var request = FetchProductsRequest()
+                                ..categoryName = category.productType.type;
+                              if (category.productType !=
+                                  ProductType.studentsEquipments) {
+                                Navigator.of(context).pushNamed(
+                                  AppRoutes.products,
+                                  arguments: ProductListParams(
+                                    request: request,
+                                    display: category,
+                                  ),
+                                );
+                              } else {
+                                Navigator.of(context).pushNamed(
+                                  AppRoutes.studentEquipments,
+                                  arguments: category,
+                                );
+                              }
+                            },
+                            child: HomeCategoryWidget(
+                              category: category,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
               )
             ],
           ),

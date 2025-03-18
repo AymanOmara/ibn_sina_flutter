@@ -18,7 +18,7 @@ class ProductsScreen extends StatelessWidget {
           body: Column(
             children: [
               SinaTopNavigationBar(
-                title: cubit.category.title,
+                title: cubit.params.display.title,
               ),
               Expanded(
                 child: LoadingWidget(

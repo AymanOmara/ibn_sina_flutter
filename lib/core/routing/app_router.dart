@@ -15,6 +15,8 @@ import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
 import 'package:ibn_sina_flutter/features/home/display/i_user_logged_in_state.dart';
 import 'package:ibn_sina_flutter/features/home/presentation/page/home_screen.dart';
+import 'package:ibn_sina_flutter/features/home/presentation/widgets/student_equipments/student_equipments_cubit.dart';
+import 'package:ibn_sina_flutter/features/home/presentation/widgets/student_equipments/student_equipments_widget.dart';
 import 'package:ibn_sina_flutter/features/notifications/business_logic/notification_cubit.dart';
 import 'package:ibn_sina_flutter/features/notifications/presentation/page/notifications_screen.dart';
 import 'package:ibn_sina_flutter/features/orders_history/business_logic/orders_history_cubit.dart';
@@ -22,6 +24,7 @@ import 'package:ibn_sina_flutter/features/orders_history/presentation/page/order
 import 'package:ibn_sina_flutter/features/product_details/business_logic/product_details_cubit.dart';
 import 'package:ibn_sina_flutter/features/product_details/presentation/page/product_details_screen.dart';
 import 'package:ibn_sina_flutter/features/products/business_logic/products_cubit.dart';
+import 'package:ibn_sina_flutter/features/products/display/product_list_params.dart';
 import 'package:ibn_sina_flutter/features/products/presentation/page/products_screen.dart';
 import 'package:ibn_sina_flutter/features/submit_order/business_logic/submit_order_cubit.dart';
 
@@ -45,7 +48,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<ProductsCubit>(
-              param1: settings.arguments as HomeCategoryDisplay,
+              param1: settings.arguments as ProductListParams,
             ),
             child: ProductsScreen(),
           ),
@@ -101,6 +104,16 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (_) => getIt<OrdersHistoryCubit>(),
             child: OrderHistoryScreen(),
+          ),
+        );
+      case AppRoutes.studentEquipments:
+        return DialogRoute(
+          context: Get.context!,
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<StudentEquipmentsCubit>(
+              param1: settings.arguments as HomeCategoryDisplay,
+            ),
+            child: StudentEquipmentsWidget(),
           ),
         );
       default:

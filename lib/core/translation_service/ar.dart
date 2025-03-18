@@ -99,5 +99,12 @@ Map<String, String> ar = {
   'pending': 'معلق',
   'completed': 'مكتمل',
   'cancelled': 'ملغي',
-  "my_orders":"طلباتي"
+  "my_orders":"طلباتي",
+  "year_of_study":"السنه الدراسيه",
+  "first_year":"سنه اولي",
+  "second_year":"سنه ثانيه",
+  "third_year":"سنه ثالثه",
+  "fourth_year":"سنه رابعه",
+  "fifth_year":"سنه خامسه",
+  "other_equipment":"ادوات اخري"
 };
