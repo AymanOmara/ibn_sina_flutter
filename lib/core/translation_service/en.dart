@@ -107,4 +107,6 @@ Map<String, String> en = {
   "fourth_year": "Fourth Year",
   "fifth_year": "Fifth Year",
   "other_equipment": "Other Equipment",
+  "enter": "Enter",
+  "search": "Search",
 };

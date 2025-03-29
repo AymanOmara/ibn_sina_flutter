@@ -106,5 +106,7 @@ Map<String, String> ar = {
   "third_year":"سنه ثالثه",
   "fourth_year":"سنه رابعه",
   "fifth_year":"سنه خامسه",
-  "other_equipment":"ادوات اخري"
+  "other_equipment":"ادوات اخري",
+  "enter": "دخول",
+  "search": "بحث ",
 };

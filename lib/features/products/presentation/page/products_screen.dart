@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:ibn_sina_flutter/core/ui/ecis_text_field.dart';
 import 'package:ibn_sina_flutter/core/ui/loading/loading_widget.dart';
 import 'package:ibn_sina_flutter/core/ui/sina_top_navigation_bar.dart';
 import 'package:ibn_sina_flutter/features/products/business_logic/products_cubit.dart';
@@ -20,6 +22,20 @@ class ProductsScreen extends StatelessWidget {
               SinaTopNavigationBar(
                 title: cubit.params.display.title,
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                child: SinaTextField(
+                  title: "",
+                  prefix: Icon(Icons.search),
+                  placeholder: "search".tr,
+                  onChanged: (txt) {
+                    cubit.updateSearchTerm(txt);
+                  },
+                ),
+              ),
               Expanded(
                 child: LoadingWidget(
                   loadingState: cubit.loading,
@@ -29,6 +45,8 @@ class ProductsScreen extends StatelessWidget {
                         spacing: 20,
                         runSpacing: 10,
                         children: cubit.products
+                            .where((pr) =>
+                                pr.productName.contains(cubit.searchTerm))
                             .map((e) => ProductWidget(
                                   product: e,
                                 ))

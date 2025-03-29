@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:domain/features/products/entity/fetch_product_request.dart';
 import 'package:domain/features/products/entity/product_entity.dart';
 import 'package:domain/features/products/use_case/fetch_products_use_case.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
-import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
 import 'package:ibn_sina_flutter/features/products/display/product_list_params.dart';
 import 'package:meta/meta.dart';
 
@@ -17,6 +15,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     fetchProducts();
   }
 
+  String searchTerm = "";
   LoadingState loading = Loading();
   final ProductListParams params;
   final FetchProductsUseCase _fetchProductsUseCase;
@@ -35,5 +34,10 @@ class ProductsCubit extends Cubit<ProductsState> {
         emit(ProductsLoading());
       });
     });
+  }
+
+  void updateSearchTerm(String value) {
+    searchTerm = value;
+    emit(ProductsInitial());
   }
 }

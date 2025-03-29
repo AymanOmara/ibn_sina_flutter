@@ -37,6 +37,10 @@ class ProductWidget extends StatelessWidget {
               product.productName,
               textAlign: TextAlign.center,
             ),
+            Text(
+              product.price.toString(),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
