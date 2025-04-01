@@ -34,6 +34,7 @@ void _setUpInterceptors(GetIt injector, Dio dio) {
       request: true,
       responseBody: true,
       requestBody: true,
+      requestHeader: true,
     )
   ]);
 }

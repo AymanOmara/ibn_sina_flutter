@@ -55,14 +55,14 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<Result<RegistrationResponseStatus, NetworkException>> createUser(
+  Future<Result<UserEntity?, NetworkException>> createUser(
     RegistrationEntity entity,
   ) async {
-    var result = await _service.fetchData<RegistrationModel>(
+    var result = await _service.fetchData<UserModel>(
         RegistrationRequest(data: entity),
-        data: RegistrationModel());
+        data: UserModel());
     return result.fold(onSuccess: (data) {
-      return Success(data?.status ?? RegistrationResponseStatus.failure);
+      return Success(data?.toEntity());
     }, onFailure: (e) {
       return Failure(e);
     });

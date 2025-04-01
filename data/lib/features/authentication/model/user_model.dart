@@ -28,7 +28,7 @@ class UserModel implements DecodeAble<UserModel?, Map<String, dynamic>> {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      userId: json['userid'] ?? '',
+      userId: json['userid'] ?? 0,
       userName: json['username'] ?? '',
       userEmail: json['useremail'] ?? '',
       userPassword: json['userpassword'] ?? '',

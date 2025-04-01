@@ -6,7 +6,7 @@ sealed class RegistrationState {}
 final class RegistrationInitial extends RegistrationState {}
 
 final class RegistrationResult extends RegistrationState {
-  final Result<RegistrationResponseStatus, NetworkException> result;
+  final Result<UserEntity?, NetworkException> result;
 
   RegistrationResult({required this.result});
 }

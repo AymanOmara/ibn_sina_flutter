@@ -19,7 +19,7 @@ class RegistrationScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is RegistrationResult) {
           state.result.fold(onSuccess: (data) {
-            if (data == RegistrationResponseStatus.success) {
+            if (data != null) {
               Get.back();
               Get.snackbar(
                 "success".tr,
@@ -29,7 +29,7 @@ class RegistrationScreen extends StatelessWidget {
             } else {
               Get.snackbar(
                 "error".tr,
-                data.value.tr,
+                "error".tr,
                 backgroundColor: Colors.red,
               );
             }

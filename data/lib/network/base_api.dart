@@ -15,10 +15,10 @@ class BaseApi implements IAPIService {
   final Dio _dio;
   final IRefreshTokenExceptionHandler _exceptionHandler;
 
-  const BaseApi(
-    this._dio,
-    this._exceptionHandler,
-  );
+  BaseApi(this._dio, this._exceptionHandler) {
+    _dio.options.connectTimeout = Duration(seconds: 10);
+    _dio.options.receiveTimeout = Duration(seconds: 10);
+  }
 
   @override
   Future<Result<T?, NetworkException>> fetchData<T>(

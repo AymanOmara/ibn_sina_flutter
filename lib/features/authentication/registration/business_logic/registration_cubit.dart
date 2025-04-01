@@ -3,6 +3,7 @@ import 'package:domain/common/exceptions/network_exception.dart';
 import 'package:domain/common/result.dart';
 import 'package:domain/features/authentication/entities/registration_entity.dart';
 import 'package:domain/features/authentication/entities/registration_response.dart';
+import 'package:domain/features/authentication/entities/user_entity.dart';
 import 'package:domain/features/authentication/use_case/registration_use_case.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
 import 'package:meta/meta.dart';
