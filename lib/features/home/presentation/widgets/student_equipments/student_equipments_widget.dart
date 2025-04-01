@@ -104,9 +104,24 @@ class StudentEquipmentsWidget extends StatelessWidget {
                   title: "other_equipment".tr,
                   isSelected: cubit.other,
                 ),
+                StudentEquipmentOption(
+                  onChange: (selected) {
+                    cubit.changeTeeth();
+                  },
+                  title: "teeth".tr,
+                  isSelected: cubit.teeth,
+                ),
+                StudentEquipmentOption(
+                  onChange: (selected) {
+                    cubit.changeClothes();
+                  },
+                  title: "cloths".tr,
+                  isSelected: cubit.clothes,
+                ),
                 InkWell(
                   onTap: () {
-                    cubit.request.categoryName = cubit.category.productType.type;
+                    cubit.request.categoryName =
+                        cubit.category.productType.type;
                     Navigator.of(context).pushNamed(
                       AppRoutes.products,
                       arguments: ProductListParams(

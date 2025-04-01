@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:common/Urls.dart';
 import 'package:data/network/remote_target.dart';
 import 'package:domain/features/products/entity/fetch_product_request.dart';
@@ -14,8 +13,8 @@ class GetProductsRequest extends IRemoteTarget {
       "thirdYear": request.thirdYear ? "T" : "F",
       "forthYear": request.fourthYear ? "T" : "F",
       "fifthYear": request.fifthYear ? "T" : "F",
-      "Clothes": request.otherEquipment ? "T" : "F",
-      "Teeth": request.otherEquipment ? "T" : "F",
+      "Clothes": request.clothes ? "T" : "F",
+      "Teeth": request.teeth ? "T" : "F",
     };
   }
 

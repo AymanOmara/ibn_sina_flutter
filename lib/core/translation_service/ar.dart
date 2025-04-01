@@ -109,4 +109,6 @@ Map<String, String> ar = {
   "other_equipment":"ادوات اخري",
   "enter": "دخول",
   "search": "بحث ",
+  "clothes":"ملابس الاكريل",
+  "teeth":"اسنان الاندو",
 };

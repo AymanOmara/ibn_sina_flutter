@@ -109,4 +109,6 @@ Map<String, String> en = {
   "other_equipment": "Other Equipment",
   "enter": "Enter",
   "search": "Search",
+  "clothes":"Clothes",
+  "teeth":"Teeth",
 };

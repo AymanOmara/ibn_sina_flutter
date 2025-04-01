@@ -22,6 +22,10 @@ class StudentEquipmentsCubit extends Cubit<StudentEquipmentsState> {
 
   bool get other => request.otherEquipment;
 
+  bool get teeth => request.teeth;
+
+  bool get clothes => request.clothes;
+
   void changeFirstYear() {
     request.firstYear = !request.firstYear;
     emit(StudentEquipmentsInitial());
@@ -49,6 +53,16 @@ class StudentEquipmentsCubit extends Cubit<StudentEquipmentsState> {
 
   void changeOther() {
     request.otherEquipment = !request.otherEquipment;
+    emit(StudentEquipmentsInitial());
+  }
+
+  void changeClothes() {
+    request.clothes = !request.clothes;
+    emit(StudentEquipmentsInitial());
+  }
+
+  void changeTeeth() {
+    request.teeth = !request.teeth;
     emit(StudentEquipmentsInitial());
   }
 }
