@@ -6,6 +6,7 @@ import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/ui/sina_top_navigation_bar.dart';
 import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
+import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/product_details/business_logic/product_details_cubit.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -38,6 +39,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     IconButton(
                       onPressed: () {
                         getIt<CartCubit>().addToCart(cubit.product);
+                        getIt<HomeCubit>().incrementCartCount();
                         Get.snackbar(
                           "success".tr,
                           "product_added_to_cart".tr,

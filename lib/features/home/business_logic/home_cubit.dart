@@ -68,6 +68,17 @@ class HomeCubit extends Cubit<HomeState> implements IUserLoggedInState {
       productType: ProductType.filesBurs,
     ),
   ];
+  int cartCount = 0;
+
+  void incrementCartCount() {
+    cartCount += 1;
+    emit(HomeInitial());
+  }
+
+  void clearCartCount() {
+    cartCount = 0;
+    emit(HomeInitial());
+  }
 
   void fetchBanners() {
     loadingState = Loading();

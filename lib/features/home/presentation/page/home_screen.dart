@@ -38,11 +38,45 @@ class HomeScreen extends StatelessWidget {
               ),
               Visibility(
                 visible: getIt<SinaDrawerCubit>().isUserLoggedIn,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.cart);
-                  },
-                  icon: Icon(Icons.add_shopping_cart),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.cart);
+                      },
+                      icon: Stack(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Icon(
+                              Icons.shopping_cart_outlined,
+                              size: 50,
+                            ),
+                          ),
+                          Visibility(
+                            visible: cubit.cartCount > 0,
+                            child: Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  "${cubit.cartCount}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               LoadingWidget(

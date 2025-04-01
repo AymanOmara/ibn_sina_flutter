@@ -32,7 +32,7 @@ void registerDependencies(GetIt diInjector) async {
   getIt.registerFactory(() => NotificationCubit(diInjector()));
 
   /// ********* Home **********
-  getIt.registerFactory(() => HomeCubit(diInjector()));
+  getIt.registerLazySingleton(() => HomeCubit(diInjector()));
   getIt.registerFactoryParam((p1, _) => StudentEquipmentsCubit(p1 as HomeCategoryDisplay));
   getIt.registerFactory(
       () => SinaDrawerCubit(diInjector(), diInjector(), diInjector()));
