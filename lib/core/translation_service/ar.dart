@@ -111,4 +111,6 @@ Map<String, String> ar = {
   "search": "بحث ",
   "clothes":"ملابس الاكريل",
   "teeth":"اسنان الاندو",
+  "success_add_favorite":"تم اضافه المنتج الي المفضله بنجاح",
+  "success_delete_favorite":"تم حذف المنتج من المفضله بنجاح",
 };

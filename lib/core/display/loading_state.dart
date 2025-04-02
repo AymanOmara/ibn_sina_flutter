@@ -3,7 +3,9 @@ import 'package:domain/common/exceptions/network_exception.dart';
 sealed class LoadingState {}
 
 class Loading extends LoadingState {
-  Loading();
+  bool showSuccessWidget = false;
+
+  Loading({this.showSuccessWidget = false});
 }
 
 class Idle extends LoadingState {}

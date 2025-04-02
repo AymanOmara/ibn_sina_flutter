@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/display/loading_state.dart';
 
@@ -22,30 +23,71 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return switch (loadingState) {
-      Loading() => _baseWidget(const CircularProgressIndicator()),
-      Idle() => const SizedBox(),
-      LoadingSuccess(data: final data) => !_isDataNotEmpty(data)
-          ? emptyWidget ?? _emptyWidget()
-          : _baseWidget(successWidget),
-      LoadingException(exception: final exception) => _baseWidget(
-          Column(
-            children: [
-              Text(
-                exception.message,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  onRetry();
-                },
-                child: Text(
-                  "retry".tr,
-                ),
-              )
-            ],
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        if (_shouldShowSuccessWidget() || _showLoadingAboveSuccessWidget())
+          _baseWidget(successWidget),
+        if (_shouldShowEmptyWidget())
+          _baseWidget(emptyWidget ?? _emptyWidget()),
+        if (_isLoading())
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
-        ),
-    };
+        if (loadingState is LoadingException)
+          _baseWidget(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text((loadingState as LoadingException).exception.message),
+                ElevatedButton(
+                  onPressed: onRetry,
+                  child: Text("retry".tr),
+                ),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+
+  bool _shouldShowSuccessWidget() {
+    if (loadingState is LoadingSuccess) {
+      final successState = loadingState as LoadingSuccess;
+      return _isDataNotEmpty(successState.data);
+    }
+    return false;
+  }
+
+  bool _shouldShowEmptyWidget() {
+    if (loadingState is LoadingSuccess) {
+      final successState = loadingState as LoadingSuccess;
+      return !_isDataNotEmpty(successState.data);
+    }
+    return false;
+  }
+
+  bool _showLoadingAboveSuccessWidget() {
+    if (loadingState is Loading) {
+      final loadingStateCasted = loadingState as Loading;
+      return loadingStateCasted.showSuccessWidget;
+    }
+    return false;
+  }
+
+  bool _isLoading() {
+    if (loadingState is Loading) {
+      final loadingStateCasted = loadingState as Loading;
+      return loadingStateCasted.showSuccessWidget ||
+          !loadingStateCasted.showSuccessWidget;
+    }
+    return false;
   }
 
   Widget _baseWidget(Widget stateRelatedWidget) {
@@ -73,15 +115,9 @@ class LoadingWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // SvgPicture.asset(
-        //   emptyImagePath,
-        // ),
-        const SizedBox(
-          height: 30,
-        ),
-        Text(
-          emptyTitle,
-        ),
+        SvgPicture.asset(emptyImagePath),
+        const SizedBox(height: 30),
+        Text(emptyTitle),
       ],
     );
   }

@@ -33,15 +33,22 @@ void registerDependencies(GetIt diInjector) async {
 
   /// ********* Home **********
   getIt.registerLazySingleton(() => HomeCubit(diInjector()));
-  getIt.registerFactoryParam((p1, _) => StudentEquipmentsCubit(p1 as HomeCategoryDisplay));
+  getIt.registerFactoryParam(
+      (p1, _) => StudentEquipmentsCubit(p1 as HomeCategoryDisplay));
   getIt.registerFactory(
       () => SinaDrawerCubit(diInjector(), diInjector(), diInjector()));
 
   /// ********* Products **********
-  getIt.registerFactoryParam(
-      (p1, _) => ProductsCubit(p1 as ProductListParams, diInjector()));
-  getIt.registerFactoryParam(
-      (p1, _) => ProductDetailsCubit(p1 as ProductEntity));
+  getIt.registerFactoryParam((p1, _) => ProductsCubit(
+        p1 as ProductListParams,
+        diInjector(),
+        diInjector(),
+        diInjector(),
+        diInjector(),
+      ));
+  getIt.registerFactoryParam((p1, _) => ProductDetailsCubit(
+        p1 as ProductEntity,
+      ));
 
   /// ********* Orders **********
   getIt.registerSingleton(

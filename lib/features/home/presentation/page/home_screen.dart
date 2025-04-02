@@ -79,13 +79,13 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              LoadingWidget(
-                loadingState: cubit.loadingState,
-                successWidget: HomeSlider(
-                  images: cubit.banners,
-                ),
-                onRetry: cubit.fetchBanners,
-              ),
+              // LoadingWidget(
+              //   loadingState: cubit.loadingState,
+              //   successWidget: HomeSlider(
+              //     images: cubit.banners,
+              //   ),
+              //   onRetry: cubit.fetchBanners,
+              // ),
               SizedBox(
                 height: 20,
               ),

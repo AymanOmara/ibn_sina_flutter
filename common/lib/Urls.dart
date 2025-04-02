@@ -12,4 +12,9 @@ class Urls {
   static const notifications = "Notifications/GetNotifications/";
   static const createOrder = "Order/MakeOrder";
   static const myOrders = "Order/GetOrders/";
+  static const favorites = "Product/GetAllFavorites";
+
+  static String addToFavorites = "Product/AddFavorite";
+  static String removeFromFavorites = "Product/DeleteFavorite";
+
 }

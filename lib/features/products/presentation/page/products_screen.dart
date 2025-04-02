@@ -13,7 +13,25 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductsCubit, ProductsState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is ProductsFavoritesResult) {
+          if (state.success) {
+            Get.snackbar(
+              "success".tr,
+              state.message,
+              backgroundColor: Colors.green,
+              colorText: Colors.white,
+            );
+          } else {
+            Get.snackbar(
+              "error".tr,
+              state.message,
+              backgroundColor: Colors.red,
+              colorText: Colors.white,
+            );
+          }
+        }
+      },
       builder: (context, state) {
         ProductsCubit cubit = BlocProvider.of(context);
         return Scaffold(
@@ -49,6 +67,9 @@ class ProductsScreen extends StatelessWidget {
                                 pr.productName.contains(cubit.searchTerm))
                             .map((e) => ProductWidget(
                                   product: e,
+                                  changeFavoriteStatus: (product) {
+                                    cubit.handleFavorite(product);
+                                  },
                                 ))
                             .toList(),
                       ),

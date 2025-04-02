@@ -20,6 +20,7 @@ class ProductEntity {
   final String size;
   final String guarantee;
   final int rate;
+  bool isFavorite = false;
 
   ProductEntity({
     required this.productId,

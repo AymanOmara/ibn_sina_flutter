@@ -47,9 +47,10 @@ class ProductDetailsScreen extends StatelessWidget {
                         );
                       },
                       icon: Icon(
-                        Icons.add_shopping_cart,
+                        Icons.shopping_cart_outlined,
+                        size: 50,
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Padding(
