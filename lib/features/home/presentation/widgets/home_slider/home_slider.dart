@@ -41,9 +41,10 @@ class HomeSlider extends StatelessWidget {
                     return CachedNetworkImage(
                       imageUrl: images[index],
                       placeholder: (context, url) =>
-                      const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) =>
-                      const Icon(Icons.error, size: 50),
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Image.asset(
+                        "assets/images/app_square_logo.png",
+                      ),
                       fit: BoxFit.fill,
                       width: double.infinity,
                     );

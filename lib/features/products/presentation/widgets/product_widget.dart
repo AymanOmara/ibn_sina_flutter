@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/features/products/entity/product_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ibn_sina_flutter/core/di/injector.dart';
 import 'package:ibn_sina_flutter/core/routing/app_routes.dart';
 import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
-import 'package:ibn_sina_flutter/features/products/business_logic/products_cubit.dart';
 
 class ProductWidget extends StatelessWidget {
   const ProductWidget({
@@ -18,6 +16,7 @@ class ProductWidget extends StatelessWidget {
 
   final ProductEntity product;
   final void Function(ProductEntity product) changeFavoriteStatus;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,10 +32,12 @@ class ProductWidget extends StatelessWidget {
           children: [
             CachedNetworkImage(
               imageUrl: product.images.first,
-              placeholder: (context, url) =>
-                  const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) =>
-                  const Icon(Icons.error, size: 50),
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => Image.asset(
+                "assets/images/app_square_logo.png",
+              ),
               fit: BoxFit.fill,
             ),
             Text(
