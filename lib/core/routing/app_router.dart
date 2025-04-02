@@ -11,6 +11,8 @@ import 'package:ibn_sina_flutter/features/authentication/registration/business_l
 import 'package:ibn_sina_flutter/features/authentication/registration/presentation/page/registration_screen.dart';
 import 'package:ibn_sina_flutter/features/cart/presentation/page/cart_screen.dart';
 import 'package:ibn_sina_flutter/features/contact_us/presentation/page/contact_us_screen.dart';
+import 'package:ibn_sina_flutter/features/favorites/business_logic/favorites_cubit.dart';
+import 'package:ibn_sina_flutter/features/favorites/presentation/page/favorites_screen.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
 import 'package:ibn_sina_flutter/features/home/display/i_user_logged_in_state.dart';
@@ -114,6 +116,13 @@ class AppRouter {
               param1: settings.arguments as HomeCategoryDisplay,
             ),
             child: StudentEquipmentsWidget(),
+          ),
+        );
+      case AppRoutes.favorites:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<FavoritesCubit>(),
+            child: FavoritesScreen(),
           ),
         );
       default:

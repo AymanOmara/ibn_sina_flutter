@@ -113,4 +113,5 @@ Map<String, String> en = {
   "teeth":"Teeth",
   "success_add_favorite":"Product has been added to favorites successfully",
   "success_delete_favorite":"Product has been deleted from favorite successfully",
+  "favorites":"Favorites",
 };

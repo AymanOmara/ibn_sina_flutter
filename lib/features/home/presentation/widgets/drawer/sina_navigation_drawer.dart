@@ -96,6 +96,12 @@ class SinaNavigationDrawer extends StatelessWidget {
               Get.toNamed(AppRoutes.contactUs);
             }),
         SinaDrawerButton(
+          title: "favorites".tr,
+          onTap: () {
+            Get.toNamed(AppRoutes.favorites);
+          },
+        ),
+        SinaDrawerButton(
             title: "notifications".tr,
             onTap: () {
               Get.toNamed(AppRoutes.notifications);

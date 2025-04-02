@@ -5,6 +5,7 @@ import 'package:ibn_sina_flutter/features/app/business_logic/app_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/login/business_logic/login_cubit.dart';
 import 'package:ibn_sina_flutter/features/authentication/registration/business_logic/registration_cubit.dart';
 import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
+import 'package:ibn_sina_flutter/features/favorites/business_logic/favorites_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/business_logic/home_cubit.dart';
 import 'package:ibn_sina_flutter/features/home/display/home_category_display.dart';
 import 'package:ibn_sina_flutter/features/home/display/i_user_logged_in_state.dart';
@@ -49,6 +50,9 @@ void registerDependencies(GetIt diInjector) async {
   getIt.registerFactoryParam((p1, _) => ProductDetailsCubit(
         p1 as ProductEntity,
       ));
+
+  /// ********* Orders **********
+  getIt.registerFactory(() => FavoritesCubit(diInjector(), diInjector()));
 
   /// ********* Orders **********
   getIt.registerSingleton(
