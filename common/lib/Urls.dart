@@ -16,5 +16,6 @@ class Urls {
 
   static String addToFavorites = "Product/AddFavorite";
   static String removeFromFavorites = "Product/DeleteFavorite";
+  static String registerFcmToken = "Notifications/RegisterFCMToken";
 
 }

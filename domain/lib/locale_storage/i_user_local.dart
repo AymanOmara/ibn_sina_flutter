@@ -12,4 +12,8 @@ abstract interface class IUserLocal {
   void saveUser(UserEntity user);
 
   UserEntity? getUser();
+
+  void setFcmToken(String fcmToken);
+
+  String get getFcmToken;
 }

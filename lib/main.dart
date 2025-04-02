@@ -1,5 +1,6 @@
 import 'package:di/di.dart';
 import 'package:domain/common/refresh_token_exception_handler.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -9,10 +10,12 @@ import 'package:ibn_sina_flutter/core/ui/theme/colors.dart';
 import 'package:ibn_sina_flutter/features/app/business_logic/app_cubit.dart';
 import 'package:ibn_sina_flutter/features/app/business_logic/app_states.dart';
 import 'package:ibn_sina_flutter/features/cart/business_logic/cart_cubit.dart';
+import 'core/helper/notifications_helper.dart';
 import 'core/helper/refresh_token_exception_handler.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/app_routes.dart';
 import 'core/translation_service/translation_service.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +23,8 @@ void main() async {
     RefreshTokenExceptionHandler(),
   );
   await DI.registerDependencies();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseNotifications().initNotification();
   registerDependencies(diInjector);
   runApp(const MyApp());
 }

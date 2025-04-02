@@ -37,4 +37,12 @@ class UserLocal implements IUserLocal {
     }
     return null;
   }
+
+  @override
+  void setFcmToken(String fcmToken) {
+    _storage.write(LocaleKeys.fcmToken, fcmToken);
+  }
+
+  @override
+  String get getFcmToken => _storage.read(LocaleKeys.fcmToken) ?? "";
 }

@@ -4,6 +4,7 @@ import 'package:domain/features/app/use_case/is_user_logged_in_use_case.dart';
 import 'package:domain/features/app/use_case/update_language_use_case.dart';
 import 'package:domain/features/authentication/use_case/delete_account_use_case.dart';
 import 'package:domain/features/authentication/use_case/login_use_case.dart';
+import 'package:domain/features/authentication/use_case/register_fcm_token_use_case.dart';
 import 'package:domain/features/authentication/use_case/registration_use_case.dart';
 import 'package:domain/features/cart/use_case/add_to_cart_use_case.dart';
 import 'package:domain/features/cart/use_case/empty_cart_use_case.dart';
@@ -49,6 +50,7 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
 
   /// ********* Notifications **********
   diInjector.registerFactory(() => GetUserNotificationsUseCase(diInjector()));
+  diInjector.registerFactory(() => RegisterFcmTokenUseCase(diInjector()));
 
   /// ********* Order **********
   diInjector.registerFactory(()=> CreateOrderUseCase(diInjector()));
@@ -59,5 +61,4 @@ Future<void> setupUseCaseInjector(GetIt diInjector) async {
   diInjector.registerFactory(()=> FetchFavoritesUseCase(diInjector()));
   diInjector.registerFactory(()=> AddToFavoritesUseCase(diInjector()));
   diInjector.registerFactory(()=> RemoveFavoriteUseCase(diInjector()));
-
 }

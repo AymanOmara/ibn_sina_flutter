@@ -5,13 +5,11 @@ class BaseResponse<T> implements DecodeAble<BaseResponse<T?>, Map?> {
   T? data;
   String? message;
   bool? success;
-  int? statusCode;
 
   BaseResponse({
     this.decodeAble,
     this.data,
     this.message,
-    this.statusCode,
     this.success,
   });
 
@@ -22,7 +20,6 @@ class BaseResponse<T> implements DecodeAble<BaseResponse<T?>, Map?> {
           ? decodeAble?.fromJson(json?["data"] ?? {})
           : null,
       message: json?["message"],
-      statusCode: json?["statusCode"],
       success: json?["success"],
     );
   }

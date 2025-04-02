@@ -1,16 +1,18 @@
+import 'package:data/common/response_entity_mapper.dart';
 import 'package:data/features/authentication/model/delete_account_model.dart';
-import 'package:data/features/authentication/model/registration_model.dart';
 import 'package:data/features/authentication/model/user_model.dart';
 import 'package:data/features/authentication/request/delete_account_request.dart';
 import 'package:data/features/authentication/request/login_request.dart';
+import 'package:data/features/authentication/request/register_fcm_token_request.dart';
 import 'package:data/features/authentication/request/registration_request.dart';
+import 'package:data/network/base_response.dart';
 
 import 'package:data/network/i_base_api.dart';
 import 'package:domain/common/exceptions/network_exception.dart';
+import 'package:domain/common/response.dart';
 
 import 'package:domain/common/result.dart';
 import 'package:domain/features/authentication/entities/registration_entity.dart';
-import 'package:domain/features/authentication/entities/registration_response.dart';
 import 'package:domain/features/authentication/entities/user_entity.dart';
 import 'package:domain/features/authentication/repositories/i_auth_repository.dart';
 import 'package:domain/locale_storage/i_user_local.dart';
@@ -26,10 +28,22 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<Result<UserEntity?, NetworkException>> login(
-      String email, String password) async {
+    String email,
+    String password,
+    Future<String?> Function() fcmGenerator,
+  ) async {
+    String? fcmToken = _userLocal.getFcmToken;
+    if (fcmToken.isEmpty) {
+      fcmToken = await fcmGenerator();
+    }
     var result = await _service.fetchData<UserModel>(
-        LoginRequest(email: email, password: password),
-        data: UserModel());
+      LoginRequest(
+        email: email,
+        password: password,
+        fcmToken: fcmToken ?? "",
+      ),
+      data: UserModel(),
+    );
     return result.fold(onSuccess: (data) {
       if (data != null) {
         _userLocal.saveUser(data.toEntity());
@@ -48,7 +62,6 @@ class AuthRepository implements IAuthRepository {
         data: DeleteAccountModel());
     return result.fold(
         onSuccess: (data) {
-
           return Success(data?.success ?? false);
         },
         onFailure: (e) => Failure(e));
@@ -66,5 +79,31 @@ class AuthRepository implements IAuthRepository {
     }, onFailure: (e) {
       return Failure(e);
     });
+  }
+
+  @override
+  Future<Result<Response<bool>?, NetworkException>> registerFcmToken() async {
+    var login = _userLocal.login;
+    if (_userLocal.getFcmToken.isEmpty || !login) {
+      return Success(
+        Response<bool>(
+          data: true,
+          success: true,
+          statusCode: 200,
+        ),
+      );
+    }
+    var result = await _service.fetchData<BaseResponse<bool>>(
+      RegisterFcmTokenRequest(
+        fcmToken: _userLocal.getFcmToken,
+        userId: _userLocal.getUser()?.userId ?? 0,
+      ),
+    );
+    switch (result) {
+      case Success(data: final data):
+        return Success(data?.toEntity(data.data ?? false));
+      case Failure(exception: final exception):
+        return Failure(exception);
+    }
   }
 }
