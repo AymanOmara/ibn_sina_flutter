@@ -46,6 +46,10 @@ class ProductEntity {
     required this.rate,
   });
 
+  bool get hasDiscount => discount > 0;
+
+  bool get available => amount > 0;
+
   Map<String, dynamic> toJson() {
     return {
       "ProductID": productId,
