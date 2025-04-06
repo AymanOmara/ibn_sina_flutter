@@ -73,6 +73,7 @@ class FirebaseNotifications {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         _firebaseMessaging.getToken().then((token) async {
+          print(token);
           IUserLocal userLocal = getIt<IUserLocal>();
           userLocal.setFcmToken(token ?? "");
           RegisterFcmTokenUseCase registerFcmTokenUseCase =
