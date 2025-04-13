@@ -28,7 +28,7 @@ class SubmitOrderCubit extends Cubit<SubmitOrderState> {
     return _cartProductUseCase()
         .map((e) => (e.product.price ?? 0) * e.count)
         .toList()
-        .reduce((value, element) => value + element);
+        .reduce((value, element) => value + element)+70;
   }
 
   void updatePaymentIndex(int index) {

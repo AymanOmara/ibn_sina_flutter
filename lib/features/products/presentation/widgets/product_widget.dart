@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/Urls.dart';
 import 'package:domain/features/products/entity/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class ProductWidget extends StatelessWidget {
             Column(
               children: [
                 CachedNetworkImage(
-                  imageUrl: product.images.first,
+                  imageUrl: Urls.imagesUrl+product.images.first,
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),

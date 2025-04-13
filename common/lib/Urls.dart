@@ -1,6 +1,7 @@
 class Urls {
   Urls._();
   static const baseUrl = "http://ibnsinadental-001-site1.ftempurl.com/api/";
+  static const imagesUrl = "http://ibnsinadental-001-site1.ftempurl.com/";
   static const banner = "Panner/GetPanner";
 
   static const products = "Product/GetProduct/";

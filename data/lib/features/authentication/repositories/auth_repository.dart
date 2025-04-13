@@ -45,11 +45,11 @@ class AuthRepository implements IAuthRepository {
       data: UserModel(),
     );
     return result.fold(onSuccess: (data) {
-      if (data != null) {
+      if (data != null && data.userId != 0) {
         _userLocal.saveUser(data.toEntity());
         return Success(data.toEntity());
       }
-      return Success(null);
+      return Failure(UserNotFoundException());
     }, onFailure: (e) {
       return Failure(e);
     });
@@ -106,4 +106,9 @@ class AuthRepository implements IAuthRepository {
         return Failure(exception);
     }
   }
+}
+
+class UserNotFoundException implements NetworkException {
+  @override
+  String get message => "تاكد من كلمه المرور واسم المستخدم";
 }

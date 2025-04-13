@@ -156,7 +156,7 @@ class SubmitOrderScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "${"shipping_cairo".tr} : 100 ${"egp".tr}",
+                            "${"shipping_cairo".tr} : 70 ${"egp".tr}",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                             ),
@@ -164,7 +164,7 @@ class SubmitOrderScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "${"shipping_outside_cairo".tr} : 100 ${"egp".tr}",
+                            "${"shipping_outside_cairo".tr} : 70 ${"egp".tr}",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                             ),

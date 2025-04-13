@@ -1,3 +1,4 @@
+import 'package:common/Urls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -39,7 +40,7 @@ class HomeSlider extends StatelessWidget {
                   onPageChanged: cubit.onPageChanged,
                   itemBuilder: (context, index) {
                     return CachedNetworkImage(
-                      imageUrl: images[index],
+                      imageUrl: Urls.imagesUrl + images[index],
                       placeholder: (context, url) =>
                           const Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => Image.asset(

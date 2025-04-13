@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:data/network/decode_able.dart';
 import 'package:domain/features/order/entity/order_entity.dart';
-import 'package:xml/xml.dart';
 
 class OrderModel implements DecodeAble<OrderModel?, Map<String, dynamic>> {
   final int? orderId;
@@ -108,11 +105,10 @@ class OrderModel implements DecodeAble<OrderModel?, Map<String, dynamic>> {
       orderAmount: orderAmount ?? 0,
       orderGovernorate: orderGovernorate ?? "",
       orderProductList:
-      orderProductList?.map((e) => e.toEntity()).toList() ?? [],
+          orderProductList?.map((e) => e.toEntity()).toList() ?? [],
     );
   }
 }
-
 
 class OrderProductModel {
   final int? orderId;
@@ -120,7 +116,12 @@ class OrderProductModel {
   final int? amount;
   final double? price;
 
-  OrderProductModel({this.orderId, this.productId, this.amount, this.price});
+  OrderProductModel({
+    this.orderId,
+    this.productId,
+    this.amount,
+    this.price,
+  });
 
   factory OrderProductModel.fromJson(Map<String, dynamic> json) {
     return OrderProductModel(
@@ -139,6 +140,7 @@ class OrderProductModel {
       "Price": price,
     };
   }
+
   OrderProductEntity toEntity() {
     return OrderProductEntity(
       orderId: orderId ?? 0,
