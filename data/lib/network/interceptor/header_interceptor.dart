@@ -14,8 +14,8 @@ class HeaderInterceptor extends InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     Map<String, dynamic> headers = {
-      "Accept-Language": userLocal.getLocale,
-      "Accept": "application/json",
+      'Content-Type': 'application/json',
+      'Accept': 'application/json, text/plain, */*',
     };
     options.headers.addAll(headers);
     super.onRequest(options, handler);

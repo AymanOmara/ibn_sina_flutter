@@ -10,7 +10,7 @@ import 'package:meta/meta.dart';
 
 part 'cart_state.dart';
 
-class CartCubit extends Cubit<CartState> implements ISuccessAble {
+class CartCubit extends Cubit<CartState> implements ISuccessAble<int> {
   CartCubit(
     this._removeCartProductUseCase,
     this._getCartProductUseCase,
@@ -42,5 +42,11 @@ class CartCubit extends Cubit<CartState> implements ISuccessAble {
   @override
   void onSuccess() {
     clear();
+  }
+
+  @override
+  void onAdd(value) {
+    value;
+    // TODO: implement onAdd
   }
 }

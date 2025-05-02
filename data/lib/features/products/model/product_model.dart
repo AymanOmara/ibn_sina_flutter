@@ -37,7 +37,7 @@ class ProductModel implements DecodeAble<ProductModel?, Map<String, dynamic>> {
   final String? sixthPhoto;
   final String? size;
   final String? guarantee;
-
+  final int? rate;
   ProductModel({
     this.productID,
     this.productName,
@@ -64,6 +64,7 @@ class ProductModel implements DecodeAble<ProductModel?, Map<String, dynamic>> {
     this.sixthPhoto,
     this.size,
     this.guarantee,
+    this.rate,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -93,6 +94,7 @@ class ProductModel implements DecodeAble<ProductModel?, Map<String, dynamic>> {
       sixthPhoto: json['sixthphoto'] as String?,
       size: json['size'] as String?,
       guarantee: json['guarantee'] as String?,
+      rate: json['rate'],
     );
   }
 
@@ -163,7 +165,7 @@ class ProductModel implements DecodeAble<ProductModel?, Map<String, dynamic>> {
       // Remove empty photo strings
       size: size ?? "Unknown",
       guarantee: guarantee ?? "No Guarantee",
-      rate: 0, // Assuming a default rating of 0
+      rate: rate ?? 0,
     );
   }
 }

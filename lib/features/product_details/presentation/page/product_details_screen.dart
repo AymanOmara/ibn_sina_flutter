@@ -27,142 +27,148 @@ class ProductDetailsScreen extends StatelessWidget {
                 SinaTopNavigationBar(
                   title: "product_details".tr,
                 ),
-                CachedNetworkImage(
-                  imageUrl: Urls.imagesUrl+cubit.product.images.first,
-                  placeholder: (context, url) =>
-                      const Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) =>
-                      const Icon(Icons.error, size: 50),
-                  fit: BoxFit.fill,
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        getIt<CartCubit>().addToCart(cubit.product);
-                        getIt<HomeCubit>().incrementCartCount();
-                        Get.snackbar(
-                          "success".tr,
-                          "product_added_to_cart".tr,
-                          backgroundColor: Colors.green,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.shopping_cart_outlined,
-                        size: 50,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
                       ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 20,
-                    children: [
-                      Text(
-                        "product_overview".tr,
-                        style: TextStyle(
-                          color: orangeColor,
-                          fontSize: 21,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        cubit.product.productName,
-                        style: TextStyle(
-                          color: blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 20,
                         children: [
-                          Image.asset(
-                            "assets/images/location.png",
-                            width: 20,
-                            height: 20,
+                          CachedNetworkImage(
+                            imageUrl: Urls.imagesUrl+cubit.product.images.first,
+                            placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                            const Icon(Icons.error, size: 50),
+                            fit: BoxFit.fill,
                           ),
-                          SizedBox(
-                            width: 20,
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  getIt<CartCubit>().addToCart(cubit.product);
+                                  getIt<HomeCubit>().incrementCartCount();
+                                  Get.snackbar(
+                                    "success".tr,
+                                    "product_added_to_cart".tr,
+                                    backgroundColor: Colors.green,
+                                  );
+                                },
+                                icon: Icon(
+                                  Icons.shopping_cart_outlined,
+                                  size: 50,
+                                ),
+                              ),
+                            ],
                           ),
                           Text(
-                            cubit.product.amount > 0
-                                ? "available".tr
-                                : "un_available".tr,
+                            "product_overview".tr,
+                            style: TextStyle(
+                              color: orangeColor,
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          Text(
+                            cubit.product.productName,
                             style: TextStyle(
                               color: blue,
                               fontWeight: FontWeight.bold,
                             ),
-                          )
-                        ],
-                      ),
-                      Text(
-                        "manufacturing".tr,
-                        style: TextStyle(
-                          color: orangeColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        cubit.product.madeIn,
-                        style: TextStyle(
-                          color: blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        cubit.product.guarantee,
-                        style: TextStyle(
-                          color: blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "expiring_date".tr,
-                        style: TextStyle(
-                          color: orangeColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        cubit.product.exDate,
-                        style: TextStyle(
-                          color: blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Row(
-                        children: [
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                "assets/images/location.png",
+                                width: 20,
+                                height: 20,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                cubit.product.amount > 0
+                                    ? "available".tr
+                                    : "un_available".tr,
+                                style: TextStyle(
+                                  color: blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
                           Text(
-                            "price".tr,
+                            "manufacturing".tr,
                             style: TextStyle(
                               color: orangeColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
                           Text(
-                            cubit.product.price.toString(),
+                            cubit.product.madeIn,
                             style: TextStyle(
                               color: blue,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "egp".tr,
+                            cubit.product.guarantee,
                             style: TextStyle(
                               color: blue,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          Text(
+                            "expiring_date".tr,
+                            style: TextStyle(
+                              color: orangeColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            cubit.product.exDate,
+                            style: TextStyle(
+                              color: blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "price".tr,
+                                style: TextStyle(
+                                  color: orangeColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                cubit.product.price.toString(),
+                                style: TextStyle(
+                                  color: blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "egp".tr,
+                                style: TextStyle(
+                                  color: blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                            ],
+                          ),
+                          SizedBox(height: 10,),
                         ],
-                      )
-                    ],
+                      ),
+                    ),
                   ),
                 )
               ],
