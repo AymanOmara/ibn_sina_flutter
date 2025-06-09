@@ -74,83 +74,87 @@ class SinaNavigationDrawer extends StatelessWidget {
   }
 
   Widget _loggedInUser(SinaDrawerCubit cubit) {
-    return Column(
-      children: [
-        SizedBox(
-          height: Get.mediaQuery.padding.top + 20,
-        ),
-        Text(
-          cubit.user?.userName ?? "",
-          style: TextStyle(
-            color: Colors.white,
+    return SafeArea(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
           ),
-        ),
-        SinaDrawerButton(
-            title: "my_orders".tr,
+          Text(
+            cubit.user?.userName ?? "",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          SinaDrawerButton(
+              title: "my_orders".tr,
+              onTap: () {
+                Get.toNamed(AppRoutes.orderHistory);
+              }),
+          SinaDrawerButton(
+              title: "contact_us".tr,
+              onTap: () {
+                Get.toNamed(AppRoutes.contactUs);
+              }),
+          SinaDrawerButton(
+            title: "favorites".tr,
             onTap: () {
-              Get.toNamed(AppRoutes.orderHistory);
-            }),
-        SinaDrawerButton(
-            title: "contact_us".tr,
-            onTap: () {
-              Get.toNamed(AppRoutes.contactUs);
-            }),
-        SinaDrawerButton(
-          title: "favorites".tr,
-          onTap: () {
-            Get.toNamed(AppRoutes.favorites);
-          },
-        ),
-        SinaDrawerButton(
-            title: "notifications".tr,
-            onTap: () {
-              Get.toNamed(AppRoutes.notifications);
-            }),
-        SinaDrawerButton(
-            title: "logout".tr,
-            onTap: () {
-              cubit.logout();
-              userLoggedInState.onLogout();
-            }),
-        SinaDrawerButton(
-            title: "delete_account".tr,
-            onTap: () {
-              cubit.deleteAccount();
-            }),
-        cubit.loading
-            ? CircularProgressIndicator(
-                color: Colors.white,
-              )
-            : SizedBox()
-      ],
+              Get.toNamed(AppRoutes.favorites);
+            },
+          ),
+          SinaDrawerButton(
+              title: "notifications".tr,
+              onTap: () {
+                Get.toNamed(AppRoutes.notifications);
+              }),
+          SinaDrawerButton(
+              title: "logout".tr,
+              onTap: () {
+                cubit.logout();
+                userLoggedInState.onLogout();
+              }),
+          SinaDrawerButton(
+              title: "delete_account".tr,
+              onTap: () {
+                cubit.deleteAccount();
+              }),
+          cubit.loading
+              ? CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : SizedBox()
+        ],
+      ),
     );
   }
 
   Widget _unLoggedInUser() {
-    return Column(
-      children: [
-        SizedBox(
-          height: Get.mediaQuery.padding.top + 20,
-        ),
-        SinaDrawerButton(
-            title: "login".tr,
-            onTap: () {
-              Get.toNamed(
-                AppRoutes.login,
-                arguments: userLoggedInState,
-              );
-            }),
-        SinaDrawerButton(
-            title: "create_account".tr,
-            onTap: () {
-              Get.toNamed(AppRoutes.registration);
-            }),
-        SinaDrawerButton(
-            title: "contact_us".tr,
-            onTap: () {
-              Get.toNamed(AppRoutes.contactUs);
-            }),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          SinaDrawerButton(
+              title: "login".tr,
+              onTap: () {
+                Get.toNamed(
+                  AppRoutes.login,
+                  arguments: userLoggedInState,
+                );
+              }),
+          SinaDrawerButton(
+              title: "create_account".tr,
+              onTap: () {
+                Get.toNamed(AppRoutes.registration);
+              }),
+          SinaDrawerButton(
+              title: "contact_us".tr,
+              onTap: () {
+                Get.toNamed(AppRoutes.contactUs);
+              }),
+        ],
+      ),
     );
   }
 }
