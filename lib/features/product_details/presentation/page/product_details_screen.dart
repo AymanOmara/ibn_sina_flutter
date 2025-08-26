@@ -80,6 +80,13 @@ class ProductDetailsScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          Text(
+                            cubit.product.productDescription,
+                            style: TextStyle(
+                              color: blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           Row(
                             children: [
                               Image.asset(
